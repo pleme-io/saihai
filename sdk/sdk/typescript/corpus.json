@@ -1,0 +1,873 @@
+{
+  "actions": [
+    {
+      "id": "window-focus",
+      "gloss": "Give a window keyboard focus",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-focus-direction",
+      "gloss": "Move focus spatially",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true },
+        { "name": "wrap", "kind": "bool", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-move",
+      "gloss": "Move a window to a position",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "x", "kind": "int", "required": true },
+        { "name": "y", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-resize",
+      "gloss": "Resize a window",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "width", "kind": "int", "required": true },
+        { "name": "height", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-close",
+      "gloss": "Ask a window to close",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-fullscreen",
+      "gloss": "Set or clear fullscreen",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-maximized",
+      "gloss": "Set or clear maximized",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-floating",
+      "gloss": "Float or tile a window",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-raise",
+      "gloss": "Raise a window in the stacking order",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "window-lower",
+      "gloss": "Lower a window in the stacking order",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "window-to-workspace",
+      "gloss": "Send a window to a workspace",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "workspace", "kind": "selector", "required": true },
+        { "name": "follow", "kind": "bool", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-to-output",
+      "gloss": "Send a window to another output",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "output", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-swap",
+      "gloss": "Swap two windows in the layout",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "other", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-list",
+      "gloss": "List managed windows",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "filter", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-get",
+      "gloss": "Read one window's full state",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-focus",
+      "gloss": "Switch to a workspace",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-cycle",
+      "gloss": "Move to the next or previous workspace",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true },
+        { "name": "wrap", "kind": "bool", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-create",
+      "gloss": "Create a workspace",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "name", "kind": "str", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-destroy",
+      "gloss": "Destroy a workspace",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-rename",
+      "gloss": "Rename a workspace",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true },
+        { "name": "name", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-move-to-output",
+      "gloss": "Move a workspace to an output",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true },
+        { "name": "output", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-list",
+      "gloss": "List workspaces",
+      "category": "Workspace",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "layout-set",
+      "gloss": "Set a workspace's layout",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true },
+        { "name": "layout", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-set-orientation",
+      "gloss": "Set the split orientation",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true },
+        { "name": "orientation", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-set-gaps",
+      "gloss": "Set inner and outer gaps",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "inner", "kind": "int", "required": true },
+        { "name": "outer", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-equalize",
+      "gloss": "Equalize sibling sizes",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-get",
+      "gloss": "Read a workspace's layout",
+      "category": "Layout",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-enabled",
+      "gloss": "Enable or disable an output",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-mode",
+      "gloss": "Set an output's resolution and refresh",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": true },
+        { "name": "width", "kind": "int", "required": true },
+        { "name": "height", "kind": "int", "required": true },
+        { "name": "refresh", "kind": "int", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-scale",
+      "gloss": "Set an output's scale factor",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": true },
+        { "name": "scale", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-transform",
+      "gloss": "Rotate or flip an output",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": true },
+        { "name": "transform", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-position",
+      "gloss": "Place an output in the layout",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": true },
+        { "name": "x", "kind": "int", "required": true },
+        { "name": "y", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-list",
+      "gloss": "List outputs and their modes",
+      "category": "Output",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "input-set-repeat",
+      "gloss": "Set key repeat rate and delay",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "rate", "kind": "int", "required": true },
+        { "name": "delay", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-set-layout",
+      "gloss": "Set the keyboard layout",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "layout", "kind": "str", "required": true },
+        { "name": "variant", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-bind",
+      "gloss": "Bind a key chord to an action",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "chord", "kind": "str", "required": true },
+        { "name": "action", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-unbind",
+      "gloss": "Remove a key binding",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "chord", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-set-mode",
+      "gloss": "Switch the active keymap mode",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "mode", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-send-keys",
+      "gloss": "Inject a synthetic key sequence",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "keys", "kind": "str", "required": true },
+        { "name": "target", "kind": "selector", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-list-bindings",
+      "gloss": "List active key bindings",
+      "category": "Input",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-set-policy",
+      "gloss": "Set the focus-follows-mouse policy",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "policy", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-get",
+      "gloss": "Read what currently has focus",
+      "category": "Focus",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "session-lock",
+      "gloss": "Lock the session",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "session-unlock",
+      "gloss": "Unlock the session after authentication",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "session-logout",
+      "gloss": "End the session",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "session-suspend",
+      "gloss": "Suspend the machine",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [],
+      "observed": 0
+    },
+    {
+      "id": "session-reboot",
+      "gloss": "Reboot the machine",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [],
+      "observed": 0
+    },
+    {
+      "id": "session-poweroff",
+      "gloss": "Power the machine off",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [],
+      "observed": 0
+    },
+    {
+      "id": "session-switch-vt",
+      "gloss": "Switch to another virtual terminal",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "vt", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-get",
+      "gloss": "Read session state",
+      "category": "Session",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "login-authenticate",
+      "gloss": "Authenticate a user against PAM",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "user", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-start-session",
+      "gloss": "Start a session for an authenticated user",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "user", "kind": "str", "required": true },
+        { "name": "session", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-end-session",
+      "gloss": "End a session and close its PAM handle",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "user", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-switch-user",
+      "gloss": "Switch to another user's session",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "user", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-list-sessions",
+      "gloss": "List active sessions",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "seat-get",
+      "gloss": "Read the seat's identity and devices",
+      "category": "Seat",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "launch-spawn",
+      "gloss": "Spawn a program",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "command", "kind": "str", "required": true },
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "launch-focus-or-spawn",
+      "gloss": "Focus a program's window, or spawn it",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "criteria", "kind": "selector", "required": true },
+        { "name": "command", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-get",
+      "gloss": "Read the clipboard",
+      "category": "Clipboard",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "selection", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-put",
+      "gloss": "Write the clipboard",
+      "category": "Clipboard",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "content", "kind": "str", "required": true },
+        { "name": "selection", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-clear",
+      "gloss": "Clear the clipboard",
+      "category": "Clipboard",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "selection", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "capture-screenshot",
+      "gloss": "Capture a screenshot",
+      "category": "Capture",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [
+        { "name": "target", "kind": "selector", "required": false },
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "capture-screencast-start",
+      "gloss": "Start a screencast",
+      "category": "Capture",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [
+        { "name": "target", "kind": "selector", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "capture-screencast-stop",
+      "gloss": "Stop a screencast",
+      "category": "Capture",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [],
+      "observed": 0
+    },
+    {
+      "id": "notify-send",
+      "gloss": "Post a notification",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l0",
+      "params": [
+        { "name": "summary", "kind": "str", "required": true },
+        { "name": "body", "kind": "str", "required": false },
+        { "name": "urgency", "kind": "str", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "notify-dismiss",
+      "gloss": "Dismiss a notification",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l0",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "theme-select",
+      "gloss": "Select the active theme",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "name", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "theme-reload",
+      "gloss": "Re-read the active theme's artifacts",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "theme-get",
+      "gloss": "Read the active theme",
+      "category": "Theme",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "system-reload-config",
+      "gloss": "Re-read the desktop configuration",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "system-get-state",
+      "gloss": "Read the whole observable desktop state",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 5
+    },
+    {
+      "id": "system-version",
+      "gloss": "Read the desktop's version and backend",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    }
+  ],
+  "count": 72
+}
