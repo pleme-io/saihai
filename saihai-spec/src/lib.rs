@@ -29,6 +29,8 @@
 //! `KeywordSexp` lowercases the ident with **no separator**, so every enum
 //! variant here is a single word.
 
+pub mod bancada;
+
 use serde::Deserialize;
 use tatara_lisp::{DeriveKeywordSexp, DeriveTataraDomain, TataraDomain};
 

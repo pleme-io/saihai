@@ -124,6 +124,37 @@ pub fn routes(cat: &Catalog) -> BTreeMap<StateKey, &saihai_spec::ActionSpec> {
     m
 }
 
+/// Find the action that sets a declared key, by LONGEST DOTTED PREFIX.
+///
+/// A declaration addresses an instance — `outputs.scale.DP-1`,
+/// `inputs.bindings.default.Mod+q` — while the catalog observes a field:
+/// `outputs.scale`, `inputs.bindings`. Exact matching made twelve of plo's
+/// sixteen declared keys unroutable, which the loop correctly reported as
+/// `Gap::NoAction` rather than silently doing nothing. That is the design
+/// working, and the bug was real: an action that observes `outputs.scale` sets
+/// the scale of ANY output, and the instance is an argument, not a different
+/// verb.
+///
+/// Longest prefix rather than first: `inputs.repeat.rate` must reach
+/// `inputs.repeat` and not stop at a hypothetical `inputs`. Segment-aligned,
+/// so `outputs.scaled` never matches a route for `outputs.scale`.
+fn route_for<'a>(
+    table: &BTreeMap<StateKey, &'a saihai_spec::ActionSpec>,
+    key: &str,
+) -> Option<&'a saihai_spec::ActionSpec> {
+    if let Some(hit) = table.get(key) {
+        return Some(hit);
+    }
+    let mut parts: Vec<&str> = key.split('.').collect();
+    while parts.len() > 1 {
+        parts.pop();
+        if let Some(hit) = table.get(&parts.join(".")) {
+            return Some(hit);
+        }
+    }
+    None
+}
+
 /// Compute the tick.
 ///
 /// Pure: no I/O, so a plan can be shown before anything is touched, and a test
@@ -142,7 +173,7 @@ pub fn plan(cat: &Catalog, desired: &Desired, observed: &Observed, holds: Rung) 
         if have == Some(want) {
             continue;
         }
-        let Some(spec) = table.get(key) else {
+        let Some(spec) = route_for(&table, key) else {
             gaps.push(Gap::NoAction {
                 key: key.clone(),
                 want: want.clone(),

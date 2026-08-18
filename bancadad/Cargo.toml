@@ -1,0 +1,12 @@
+[package]
+name = "bancadad"
+description = "The daemon that holds a declared pleme-io desktop at its declared shape."
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+saihai-spec = { path = "../saihai-spec", version = "0.1.0" }
+saihai-forge = { path = "../saihai-forge", version = "0.1.0" }

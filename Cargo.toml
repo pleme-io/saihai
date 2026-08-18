@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["hashigo", "saihai-spec", "saihai-forge"]
+members = ["hashigo", "saihai-spec", "saihai-forge", "bancadad"]
 
 [workspace.package]
 version = "0.1.0"
