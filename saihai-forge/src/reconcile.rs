@@ -124,6 +124,38 @@ pub fn routes(cat: &Catalog) -> BTreeMap<StateKey, &saihai_spec::ActionSpec> {
     m
 }
 
+/// Every MUTATING action's observed keys, blind ones included.
+///
+/// Used only to tell two different situations apart. A blind action still
+/// cannot close a gap — it has no read-back path — but "nothing sets this" and
+/// "the only thing that sets this can never be confirmed" are different facts,
+/// and an operator needs the second one to know the declaration is asking for
+/// something the desktop cannot be held at.
+///
+/// A blind action's own `observed` list is empty by definition, so its keys are
+/// synthesised from `category.object` — the same addressing the converging
+/// actions use, which is what lets a declared key reach it at all.
+#[must_use]
+fn blind_routes(cat: &Catalog) -> BTreeMap<StateKey, &saihai_spec::ActionSpec> {
+    let mut m = BTreeMap::new();
+    for a in cat.actions.iter().filter(|a| a.class() == Class::Blind) {
+        let id = a.id.as_str();
+        let mut parts = id.split('-');
+        let head = parts.next().unwrap_or_default();
+        let tail = id.rsplit('-').next().unwrap_or_default();
+        // `input-set-keyboard-repeat` -> `inputs.repeat`
+        let domain = match head {
+            "window" | "launch" => "windows",
+            "workspace" => "workspaces",
+            "output" => "outputs",
+            "input" => "inputs",
+            _ => head,
+        };
+        m.entry(format!("{domain}.{tail}")).or_insert(a);
+    }
+    m
+}
+
 /// Find the action that sets a declared key, by LONGEST DOTTED PREFIX.
 ///
 /// A declaration addresses an instance — `outputs.scale.DP-1`,
@@ -163,6 +195,7 @@ fn route_for<'a>(
 #[must_use]
 pub fn plan(cat: &Catalog, desired: &Desired, observed: &Observed, holds: Rung) -> Plan {
     let table = routes(cat);
+    let blind = blind_routes(cat);
     let mut calls = Vec::new();
     let mut gaps = Vec::new();
     let mut examined = 0usize;
@@ -174,10 +207,22 @@ pub fn plan(cat: &Catalog, desired: &Desired, observed: &Observed, holds: Rung) 
             continue;
         }
         let Some(spec) = route_for(&table, key) else {
-            gaps.push(Gap::NoAction {
-                key: key.clone(),
-                want: want.clone(),
-            });
+            // Before calling it unreachable, check whether a BLIND action sets
+            // it. "Nothing sets this" and "the only thing that sets this can
+            // never be confirmed" are different facts, and the second is the
+            // one that tells an operator the declaration is asking for a state
+            // the desktop cannot be held at.
+            if let Some(b) = route_for(&blind, key) {
+                gaps.push(Gap::Blind {
+                    key: key.clone(),
+                    action: b.id.clone(),
+                });
+            } else {
+                gaps.push(Gap::NoAction {
+                    key: key.clone(),
+                    want: want.clone(),
+                });
+            }
             continue;
         };
         // Authority BEFORE planning: a gap the loop cannot close is reported,

@@ -1,0 +1,3094 @@
+{
+  "actions": [
+    {
+      "id": "window-focus",
+      "gloss": "Window focus",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-focus-direction",
+      "gloss": "Window focus direction",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true },
+        { "name": "wrap", "kind": "bool", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-move",
+      "gloss": "Window move",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "position", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-move-direction",
+      "gloss": "Window move direction",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-resize",
+      "gloss": "Window resize",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "size", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-resize-delta",
+      "gloss": "Window resize delta",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "axis", "kind": "str", "required": true },
+        { "name": "amount", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-close",
+      "gloss": "Window close",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-fullscreen",
+      "gloss": "Window set fullscreen",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-maximized",
+      "gloss": "Window set maximized",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-minimized",
+      "gloss": "Window set minimized",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-floating",
+      "gloss": "Window set floating",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-swap",
+      "gloss": "Window swap",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "a", "kind": "selector", "required": true },
+        { "name": "b", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-raise",
+      "gloss": "Window raise",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "window-lower",
+      "gloss": "Window lower",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "window-center",
+      "gloss": "Window center",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-full-width",
+      "gloss": "Window full width",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-equalize",
+      "gloss": "Window equalize",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-managed",
+      "gloss": "Window set managed",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "managed", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-stacked",
+      "gloss": "Window set stacked",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-set-always-on-top",
+      "gloss": "Window set always on top",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "window-to-output",
+      "gloss": "Window to output",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-to-workspace",
+      "gloss": "Window to workspace",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "workspace", "kind": "selector", "required": false },
+        { "name": "follow", "kind": "bool", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-consume-or-expel",
+      "gloss": "Window consume or expel",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-list",
+      "gloss": "Window list",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "filter", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-get",
+      "gloss": "Window get",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-pick",
+      "gloss": "Window pick",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "prompt", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "window-to-scratchpad",
+      "gloss": "Window to scratchpad",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "name", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "scratchpad-show",
+      "gloss": "Scratchpad show",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "name", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "scratchpad-hide",
+      "gloss": "Scratchpad hide",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "name", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "scratchpad-cycle",
+      "gloss": "Scratchpad cycle",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "scratchpad-list",
+      "gloss": "Scratchpad list",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "workspace-focus",
+      "gloss": "Workspace focus",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-cycle",
+      "gloss": "Workspace cycle",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true },
+        { "name": "wrap", "kind": "bool", "required": false },
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-create",
+      "gloss": "Workspace create",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "name", "kind": "str", "required": false },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-destroy",
+      "gloss": "Workspace destroy",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false },
+        { "name": "on_nonempty", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-rename",
+      "gloss": "Workspace rename",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false },
+        { "name": "name", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-move-to-output",
+      "gloss": "Workspace move to output",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-reorder",
+      "gloss": "Workspace reorder",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "direction", "kind": "direction", "required": true },
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-set-urgent",
+      "gloss": "Workspace set urgent",
+      "category": "Workspace",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "urgent", "kind": "str", "required": true },
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "workspace-list",
+      "gloss": "Workspace list",
+      "category": "Workspace",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "layout-set",
+      "gloss": "Layout set",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "layout", "kind": "str", "required": true },
+        { "name": "accordion", "kind": "str", "required": true },
+        { "name": "floating", "kind": "str", "required": true },
+        { "name": "auto", "kind": "str", "required": true },
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-set-orientation",
+      "gloss": "Layout set orientation",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "orientation", "kind": "str", "required": true },
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-flatten-tree",
+      "gloss": "Layout flatten tree",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-set-gaps",
+      "gloss": "Layout set gaps",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "inner_h", "kind": "str", "required": true },
+        { "name": "inner_v", "kind": "str", "required": true },
+        { "name": "outer_l", "kind": "str", "required": true },
+        { "name": "outer_r", "kind": "str", "required": true },
+        { "name": "outer_t", "kind": "str", "required": true },
+        { "name": "outer_b", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-set-default-root",
+      "gloss": "Layout set default root",
+      "category": "Layout",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "layout", "kind": "str", "required": true },
+        { "name": "orientation", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layout-get",
+      "gloss": "Layout get",
+      "category": "Layout",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "workspace", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-enabled",
+      "gloss": "Output set enabled",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "enabled", "kind": "bool", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-mode",
+      "gloss": "Output set mode",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": false },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-scale",
+      "gloss": "Output set scale",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "scale", "kind": "int", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-transform",
+      "gloss": "Output set transform",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "transform", "kind": "str", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-position",
+      "gloss": "Output set position",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "position", "kind": "str", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-adaptive-sync",
+      "gloss": "Output set adaptive sync",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "output", "kind": "selector", "required": false },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-power",
+      "gloss": "Output set power",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "power", "kind": "str", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-set-gamma",
+      "gloss": "Output set gamma",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [
+        { "name": "correction", "kind": "str", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "output-apply-transaction",
+      "gloss": "Output apply transaction",
+      "category": "Output",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "changes", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "output-list",
+      "gloss": "Output list",
+      "category": "Output",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "input-set-keyboard-repeat",
+      "gloss": "Input set keyboard repeat",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "rate_hz", "kind": "str", "required": true },
+        { "name": "delay_ms", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-set-keyboard-layout",
+      "gloss": "Input set keyboard layout",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "layouts", "kind": "str", "required": true },
+        { "name": "options", "kind": "str", "required": true },
+        { "name": "model", "kind": "str", "required": true },
+        { "name": "variant", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-switch-keyboard-layout",
+      "gloss": "Input switch keyboard layout",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "selector", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-set-pointer-accel",
+      "gloss": "Input set pointer accel",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "device", "kind": "selector", "required": true },
+        { "name": "profile", "kind": "str", "required": true },
+        { "name": "speed", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-set-natural-scroll",
+      "gloss": "Input set natural scroll",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "device", "kind": "str", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-set-tap-to-click",
+      "gloss": "Input set tap to click",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "device", "kind": "str", "required": true },
+        { "name": "on", "kind": "bool", "required": true },
+        { "name": "drag_lock", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-set-cursor",
+      "gloss": "Input set cursor",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "theme", "kind": "str", "required": true },
+        { "name": "size", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-list-devices",
+      "gloss": "Input list devices",
+      "category": "Input",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "input-get-state",
+      "gloss": "Input get state",
+      "category": "Input",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "input-bind",
+      "gloss": "Input bind",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "chord", "kind": "str", "required": true },
+        { "name": "action", "kind": "str", "required": true },
+        { "name": "condition", "kind": "str", "required": true },
+        { "name": "rank", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-unbind",
+      "gloss": "Input unbind",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "chord", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-set-mode",
+      "gloss": "Input set mode",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-remap",
+      "gloss": "Input remap",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "source", "kind": "str", "required": true },
+        { "name": "to", "kind": "str", "required": true },
+        { "name": "condition", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-unremap",
+      "gloss": "Input unremap",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "source", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-bind-sequence",
+      "gloss": "Input bind sequence",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "chords", "kind": "str", "required": true },
+        { "name": "action", "kind": "str", "required": true },
+        { "name": "timeout_ms", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-chord-cancel",
+      "gloss": "Input chord cancel",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "input-set-leader-timeout",
+      "gloss": "Input set leader timeout",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "timeout_ms", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-grab-keyboard",
+      "gloss": "Input grab keyboard",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "exclusive", "kind": "str", "required": true },
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-release-keyboard",
+      "gloss": "Input release keyboard",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "bindings-list",
+      "gloss": "Bindings list",
+      "category": "Input",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "bindings-check-conflicts",
+      "gloss": "Bindings check conflicts",
+      "category": "Input",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "input-inject-key",
+      "gloss": "Input inject key",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "key", "kind": "str", "required": true },
+        { "name": "state", "kind": "str", "required": true },
+        { "name": "modifiers", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-inject-chord",
+      "gloss": "Input inject chord",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "chord", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-inject-text",
+      "gloss": "Input inject text",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "text", "kind": "str", "required": true },
+        { "name": "method", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "input-inject-pointer",
+      "gloss": "Input inject pointer",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "motion", "kind": "str", "required": true },
+        { "name": "button", "kind": "str", "required": true },
+        { "name": "axis", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "gesture-bind",
+      "gloss": "Gesture bind",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "gesture", "kind": "str", "required": true },
+        { "name": "action", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "gesture-unbind",
+      "gloss": "Gesture unbind",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "gesture", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "gesture-set-suppression",
+      "gloss": "Gesture set suppression",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "kind", "kind": "str", "required": true },
+        { "name": "five_finger_pinch", "kind": "str", "required": true },
+        { "name": "five_finger_spread", "kind": "str", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "gesture-list",
+      "gloss": "Gesture list",
+      "category": "Input",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "focus-set-follows-mouse",
+      "gloss": "Focus set follows mouse",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-set-mouse-follows-focus",
+      "gloss": "Focus set mouse follows focus",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-set-auto-center",
+      "gloss": "Focus set auto center",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-set-skip-reshuffle",
+      "gloss": "Focus set skip reshuffle",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-set-manage-toggle-enabled",
+      "gloss": "Focus set manage toggle enabled",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "edge-snap-set-left",
+      "gloss": "Edge snap set left",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "edge-snap-set-right",
+      "gloss": "Edge snap set right",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "edge-snap-set-preview",
+      "gloss": "Edge snap set preview",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "edge-snap-set-sticky-dwell",
+      "gloss": "Edge snap set sticky dwell",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "ms", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "focus-policy-get",
+      "gloss": "Focus policy get",
+      "category": "Focus",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pointer-warp-to",
+      "gloss": "Pointer warp to",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "anchor", "kind": "str", "required": true },
+        { "name": "monitor_center", "kind": "str", "required": true },
+        { "name": "window_center", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "rule-add",
+      "gloss": "Rule add",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "criteria", "kind": "selector", "required": true },
+        { "name": "trigger", "kind": "str", "required": true },
+        { "name": "effects", "kind": "str", "required": true },
+        { "name": "assertiveness", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "rule-remove",
+      "gloss": "Rule remove",
+      "category": "Focus",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "rule-list",
+      "gloss": "Rule list",
+      "category": "Focus",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "hook-set",
+      "gloss": "Hook set",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "trigger", "kind": "str", "required": true },
+        { "name": "argv", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "hook-unset",
+      "gloss": "Hook unset",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "trigger", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "hook-list",
+      "gloss": "Hook list",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "decoration-set-border",
+      "gloss": "Decoration set border",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "active", "kind": "str", "required": true },
+        { "name": "inactive", "kind": "str", "required": true },
+        { "name": "width", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "decoration-get",
+      "gloss": "Decoration get",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "session-lock",
+      "gloss": "Session lock",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "locker", "kind": "str", "required": true },
+        { "name": "grace_ms", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-unlock",
+      "gloss": "Session unlock",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "proof", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-logout",
+      "gloss": "Session logout",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "teardown", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-suspend",
+      "gloss": "Session suspend",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "force", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-reboot",
+      "gloss": "Session reboot",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "delay", "kind": "int", "required": true },
+        { "name": "confirm", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "session-poweroff",
+      "gloss": "Session poweroff",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "delay", "kind": "int", "required": true },
+        { "name": "confirm", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "session-switch-user",
+      "gloss": "Session switch user",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "to", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-switch-vt",
+      "gloss": "Session switch vt",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "vt", "kind": "int", "required": true },
+        { "name": "witness", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-set-idle-inhibit",
+      "gloss": "Session set idle inhibit",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true },
+        { "name": "reason", "kind": "str", "required": false },
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-set-idle-policy",
+      "gloss": "Session set idle policy",
+      "category": "Session",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "rungs", "kind": "str", "required": true },
+        { "name": "action", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "session-observe-idle",
+      "gloss": "Session observe idle",
+      "category": "Session",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "seat", "kind": "str", "required": true },
+        { "name": "timeout", "kind": "int", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "session-list",
+      "gloss": "Session list",
+      "category": "Session",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "session-get-state",
+      "gloss": "Session get state",
+      "category": "Session",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-enumerate-principals",
+      "gloss": "Login enumerate principals",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "seat_answer_vec_publicprofile", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-resolve-principal",
+      "gloss": "Login resolve principal",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "name_answer_principal", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-read-public-profile",
+      "gloss": "Login read public profile",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "principal_answer_publicprofile", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-auth-begin",
+      "gloss": "Login auth begin",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "service", "kind": "str", "required": true },
+        { "name": "principal", "kind": "str", "required": true },
+        { "name": "tty", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-auth-next",
+      "gloss": "Login auth next",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle_pamstep", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-auth-answer",
+      "gloss": "Login auth answer",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true },
+        { "name": "response", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-auth-account-check",
+      "gloss": "Login auth account check",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle_acctverdict", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-auth-change-token",
+      "gloss": "Login auth change token",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-set-credentials",
+      "gloss": "Login set credentials",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "login-put-env",
+      "gloss": "Login put env",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true },
+        { "name": "key", "kind": "str", "required": true },
+        { "name": "value", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-get-env",
+      "gloss": "Login get env",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-open-session",
+      "gloss": "Login open session",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-close-session",
+      "gloss": "Login close session",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-auth-end",
+      "gloss": "Login auth end",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l2",
+      "params": [
+        { "name": "handle", "kind": "str", "required": true },
+        { "name": "status", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "login-mint-capability",
+      "gloss": "Login mint capability",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "proof", "kind": "str", "required": true },
+        { "name": "seat", "kind": "str", "required": true },
+        { "name": "handle_seatcapability_authenticated", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-start-session",
+      "gloss": "Login start session",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "cap", "kind": "str", "required": true },
+        { "name": "session", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-autologin",
+      "gloss": "Login autologin",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "user", "kind": "str", "required": true },
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "runfile", "kind": "str", "required": true },
+        { "name": "budget", "kind": "str", "required": true },
+        { "name": "on_exhausted", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-fork-session",
+      "gloss": "Login fork session",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "argv", "kind": "str", "required": true },
+        { "name": "env", "kind": "str", "required": true },
+        { "name": "uid", "kind": "str", "required": true },
+        { "name": "gid", "kind": "str", "required": true },
+        { "name": "loginuid", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-signal-session",
+      "gloss": "Login signal session",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "pid", "kind": "str", "required": true },
+        { "name": "signal", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-reap-session",
+      "gloss": "Login reap session",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "pid_exitstatus", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "login-handoff",
+      "gloss": "Login handoff",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "facts", "kind": "str", "required": true },
+        { "name": "value", "kind": "str", "required": true },
+        { "name": "epoch", "kind": "str", "required": true },
+        { "name": "volatility", "kind": "str", "required": true },
+        { "name": "scope", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-open",
+      "gloss": "Seat open",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "seat", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-take-control",
+      "gloss": "Seat take control",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "seat_uncontrolled_controlled", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-open-device",
+      "gloss": "Seat open device",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "controlled", "kind": "str", "required": true },
+        { "name": "path_devicefd", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-close-device",
+      "gloss": "Seat close device",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "controlled", "kind": "str", "required": true },
+        { "name": "fd", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-poll",
+      "gloss": "Seat poll",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "controlled", "kind": "str", "required": true },
+        { "name": "deadline_seattransition", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-ack-disable",
+      "gloss": "Seat ack disable",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "disabling_disabled", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "seat-reacquire",
+      "gloss": "Seat reacquire",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "disabled_controlled", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "vt-query-free",
+      "gloss": "Vt query free",
+      "category": "Login",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "seat0witness_vtnumber", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "vt-set-kd-mode",
+      "gloss": "Vt set kd mode",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "witness", "kind": "str", "required": true },
+        { "name": "vt", "kind": "int", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "vt-set-kb-mode",
+      "gloss": "Vt set kb mode",
+      "category": "Login",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "witness", "kind": "str", "required": true },
+        { "name": "vt", "kind": "int", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "launch-spawn",
+      "gloss": "Launch spawn",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l0",
+      "params": [
+        { "name": "argv", "kind": "str", "required": true },
+        { "name": "env", "kind": "str", "required": true },
+        { "name": "cwd", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "launch-activate",
+      "gloss": "Launch activate",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l0",
+      "params": [
+        { "name": "app_id", "kind": "str", "required": true },
+        { "name": "token", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "launch-desktop-entry",
+      "gloss": "Launch desktop entry",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "entry", "kind": "str", "required": true },
+        { "name": "action", "kind": "str", "required": true },
+        { "name": "args", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "launch-open-url",
+      "gloss": "Launch open url",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l0",
+      "params": [
+        { "name": "url", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "launch-open-path",
+      "gloss": "Launch open path",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l0",
+      "params": [
+        { "name": "with", "kind": "str", "required": true },
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "launch-focus-or-spawn",
+      "gloss": "Launch focus or spawn",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "criteria", "kind": "selector", "required": true },
+        { "name": "argv", "kind": "str", "required": true },
+        { "name": "timeout_ms", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "launcher-toggle",
+      "gloss": "Launcher toggle",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "launcher-show",
+      "gloss": "Launcher show",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "launcher-hide",
+      "gloss": "Launcher hide",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "launcher-set-query",
+      "gloss": "Launcher set query",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "query", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "launcher-get-state",
+      "gloss": "Launcher get state",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "launcher-run-command",
+      "gloss": "Launcher run command",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "argv", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "clipboard-get",
+      "gloss": "Clipboard get",
+      "category": "Clipboard",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l2",
+      "params": [
+        { "name": "mime_answer_bytes", "kind": "str", "required": true },
+        { "name": "selection", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-put",
+      "gloss": "Clipboard put",
+      "category": "Clipboard",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "mime", "kind": "str", "required": true },
+        { "name": "data", "kind": "str", "required": true },
+        { "name": "sensitive", "kind": "bool", "required": true },
+        { "name": "selection", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-clear",
+      "gloss": "Clipboard clear",
+      "category": "Clipboard",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "selection", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-history-list",
+      "gloss": "Clipboard history list",
+      "category": "Clipboard",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "limit", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "clipboard-history-clear",
+      "gloss": "Clipboard history clear",
+      "category": "Clipboard",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "screenshot-capture",
+      "gloss": "Screenshot capture",
+      "category": "Capture",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "source", "kind": "str", "required": true },
+        { "name": "sink", "kind": "str", "required": true },
+        { "name": "include_cursor", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "screenshot-pick-region",
+      "gloss": "Screenshot pick region",
+      "category": "Capture",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "prompt", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "color-pick",
+      "gloss": "Color pick",
+      "category": "Capture",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "screencast-start",
+      "gloss": "Screencast start",
+      "category": "Capture",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "source", "kind": "str", "required": true },
+        { "name": "sink", "kind": "str", "required": true },
+        { "name": "fps", "kind": "str", "required": true },
+        { "name": "include_cursor_castid", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "screencast-stop",
+      "gloss": "Screencast stop",
+      "category": "Capture",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l2",
+      "params": [
+        { "name": "cast", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "screencast-list",
+      "gloss": "Screencast list",
+      "category": "Capture",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "notify-send",
+      "gloss": "Notify send",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "summary", "kind": "str", "required": true },
+        { "name": "app_id", "kind": "str", "required": true },
+        { "name": "timeout_ms", "kind": "str", "required": true },
+        { "name": "actions", "kind": "str", "required": true },
+        { "name": "icon_notificationid", "kind": "str", "required": true },
+        { "name": "body", "kind": "str", "required": false },
+        { "name": "urgency", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-invoke-action",
+      "gloss": "Notify invoke action",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "id", "kind": "str", "required": true },
+        { "name": "action_id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-dismiss",
+      "gloss": "Notify dismiss",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-dismiss-all",
+      "gloss": "Notify dismiss all",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "filter", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-mark-read",
+      "gloss": "Notify mark read",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-set-dnd",
+      "gloss": "Notify set dnd",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true },
+        { "name": "until", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-list",
+      "gloss": "Notify list",
+      "category": "Notify",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "include_history", "kind": "str", "required": true },
+        { "name": "filter", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-history-clear",
+      "gloss": "Notify history clear",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "notify-history-delete-one",
+      "gloss": "Notify history delete one",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "entry_id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-toggle-expand",
+      "gloss": "Notify toggle expand",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-toggle-view",
+      "gloss": "Notify toggle view",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "notify-search",
+      "gloss": "Notify search",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "query", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "notify-filter-set",
+      "gloss": "Notify filter set",
+      "category": "Notify",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "by", "kind": "str", "required": true },
+        { "name": "value", "kind": "str", "required": true },
+        { "name": "urgency", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layer-spawn",
+      "gloss": "Layer spawn",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "client", "kind": "str", "required": true },
+        { "name": "layer", "kind": "str", "required": true },
+        { "name": "anchor", "kind": "str", "required": true },
+        { "name": "exclusive_zone", "kind": "str", "required": true },
+        { "name": "keyboard", "kind": "str", "required": true },
+        { "name": "output", "kind": "selector", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layer-kill",
+      "gloss": "Layer kill",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "client", "kind": "str", "required": true },
+        { "name": "teardown", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "layer-list",
+      "gloss": "Layer list",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pane-session-new",
+      "gloss": "Pane session new",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "name_panesessionid", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-session-kill",
+      "gloss": "Pane session kill",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-session-list",
+      "gloss": "Pane session list",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pane-session-detail",
+      "gloss": "Pane session detail",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-list",
+      "gloss": "Pane list",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-snapshot",
+      "gloss": "Pane snapshot",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-send-keys",
+      "gloss": "Pane send keys",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true },
+        { "name": "keys", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "pane-set-input-policy",
+      "gloss": "Pane set input policy",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true },
+        { "name": "policy", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-subscriber-count",
+      "gloss": "Pane subscriber count",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-record-start",
+      "gloss": "Pane record start",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-record-stop",
+      "gloss": "Pane record stop",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-record-export",
+      "gloss": "Pane record export",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true },
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-record-status",
+      "gloss": "Pane record status",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-blocks-list",
+      "gloss": "Pane blocks list",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-block-at",
+      "gloss": "Pane block at",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true },
+        { "name": "index", "kind": "int", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-blocks-status",
+      "gloss": "Pane blocks status",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-stats",
+      "gloss": "Pane stats",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "pane", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-top",
+      "gloss": "Pane top",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "limit", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-daemon-status",
+      "gloss": "Pane daemon status",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pane-system-resources",
+      "gloss": "Pane system resources",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pane-socket-info",
+      "gloss": "Pane socket info",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pane-config-get",
+      "gloss": "Pane config get",
+      "category": "Window",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "pane-config-set",
+      "gloss": "Pane config set",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "yaml", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "pane-reload-config",
+      "gloss": "Pane reload config",
+      "category": "Window",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "browser-open",
+      "gloss": "Browser open",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "url_browserid", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-close",
+      "gloss": "Browser close",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-focus",
+      "gloss": "Browser focus",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-list",
+      "gloss": "Browser list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "browser-move",
+      "gloss": "Browser move",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true },
+        { "name": "position", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-resize",
+      "gloss": "Browser resize",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true },
+        { "name": "size", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-navigate",
+      "gloss": "Browser navigate",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true },
+        { "name": "url", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-snap",
+      "gloss": "Browser snap",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true },
+        { "name": "zone", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-snapshot",
+      "gloss": "Browser snapshot",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-snapshot-get",
+      "gloss": "Browser snapshot get",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "browser-set-dom",
+      "gloss": "Browser set dom",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true },
+        { "name": "dom", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "theme-select",
+      "gloss": "Theme select",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "theme", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "theme-set-appearance",
+      "gloss": "Theme set appearance",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "appearance", "kind": "str", "required": true },
+        { "name": "dark", "kind": "str", "required": true },
+        { "name": "auto", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "theme-set-font-scale",
+      "gloss": "Theme set font scale",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "scale", "kind": "int", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "theme-reload",
+      "gloss": "Theme reload",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "theme-get",
+      "gloss": "Theme get",
+      "category": "Theme",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "theme_per_leaf_provenance", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "screen-transition-run",
+      "gloss": "Screen transition run",
+      "category": "Theme",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "delay_ms", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "audio-set-volume",
+      "gloss": "Audio set volume",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "target", "kind": "selector", "required": true },
+        { "name": "sink", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "audio-set-mute",
+      "gloss": "Audio set mute",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true },
+        { "name": "sink", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "audio-set-default-sink",
+      "gloss": "Audio set default sink",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [
+        { "name": "sink", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "audio-list-sinks",
+      "gloss": "Audio list sinks",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "screensaver-start",
+      "gloss": "Screensaver start",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "trash-empty",
+      "gloss": "Trash empty",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l3",
+      "params": [
+        { "name": "confirm", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "volume-eject-all",
+      "gloss": "Volume eject all",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "overview-set",
+      "gloss": "Overview set",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "config-reload",
+      "gloss": "Config reload",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "config-get",
+      "gloss": "Config get",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "key", "kind": "str", "required": true },
+        { "name": "include_provenance", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "config-set",
+      "gloss": "Config set",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "key", "kind": "str", "required": true },
+        { "name": "value", "kind": "str", "required": true },
+        { "name": "apply", "kind": "str", "required": true },
+        { "name": "live", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "state-query",
+      "gloss": "State query",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "domain", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "events-subscribe",
+      "gloss": "Events subscribe",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "since", "kind": "str", "required": true },
+        { "name": "filter", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "compositor-quit",
+      "gloss": "Compositor quit",
+      "category": "System",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "confirm", "kind": "str", "required": true },
+        { "name": "teardown", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "desktop-plan",
+      "gloss": "Desktop plan",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l1",
+      "params": [
+        { "name": "spec", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "desktop-apply",
+      "gloss": "Desktop apply",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "spec", "kind": "str", "required": true },
+        { "name": "policy", "kind": "str", "required": true },
+        { "name": "mode", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "desktop-tick",
+      "gloss": "Desktop tick",
+      "category": "System",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "tickoutcome", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "desktop-attest",
+      "gloss": "Desktop attest",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "receipt_desktoppayload", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "desktop-health",
+      "gloss": "Desktop health",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "desktop-version",
+      "gloss": "Desktop version",
+      "category": "System",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    }
+  ],
+  "count": 248
+}
