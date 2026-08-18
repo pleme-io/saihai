@@ -80,6 +80,7 @@ ACTIONS = {
     "input-release-keyboard": {"id": "input-release-keyboard", "cls": "converging", "auth": "l1", "params": [{"name": "scope", "kind": "str", "required": False}]},
     "bindings-list": {"id": "bindings-list", "cls": "read", "auth": "l0", "params": [{"name": "mode", "kind": "str", "required": False}]},
     "bindings-check-conflicts": {"id": "bindings-check-conflicts", "cls": "read", "auth": "l0", "params": [{"name": "scope", "kind": "str", "required": False}]},
+    "action-chain": {"id": "action-chain", "cls": "blind", "auth": "l3", "params": [{"name": "steps", "kind": "str", "required": True}]},
     "input-inject-key": {"id": "input-inject-key", "cls": "blind", "auth": "l3", "params": [{"name": "key", "kind": "str", "required": True}, {"name": "state", "kind": "str", "required": True}, {"name": "modifiers", "kind": "str", "required": True}]},
     "input-inject-chord": {"id": "input-inject-chord", "cls": "blind", "auth": "l3", "params": [{"name": "chord", "kind": "str", "required": True}]},
     "input-inject-text": {"id": "input-inject-text", "cls": "blind", "auth": "l3", "params": [{"name": "text", "kind": "str", "required": True}, {"name": "method", "kind": "str", "required": True}]},
@@ -190,6 +191,31 @@ ACTIONS = {
     "layer-spawn": {"id": "layer-spawn", "cls": "converging", "auth": "l1", "params": [{"name": "client", "kind": "str", "required": True}, {"name": "layer", "kind": "str", "required": True}, {"name": "anchor", "kind": "str", "required": True}, {"name": "exclusive_zone", "kind": "str", "required": True}, {"name": "keyboard", "kind": "str", "required": True}, {"name": "output", "kind": "selector", "required": False}]},
     "layer-kill": {"id": "layer-kill", "cls": "converging", "auth": "l1", "params": [{"name": "client", "kind": "str", "required": True}, {"name": "teardown", "kind": "str", "required": True}]},
     "layer-list": {"id": "layer-list", "cls": "read", "auth": "l1", "params": []},
+    "term-spawn": {"id": "term-spawn", "cls": "converging", "auth": "l1", "params": [{"name": "argv", "kind": "str", "required": True}, {"name": "cwd", "kind": "str", "required": True}, {"name": "profile_sessionid", "kind": "str", "required": True}]},
+    "term-close": {"id": "term-close", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}]},
+    "term-switch": {"id": "term-switch", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}]},
+    "term-resize": {"id": "term-resize", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "cols", "kind": "str", "required": True}, {"name": "rows", "kind": "str", "required": True}]},
+    "term-list": {"id": "term-list", "cls": "read", "auth": "l0", "params": []},
+    "term-get-output": {"id": "term-get-output", "cls": "read", "auth": "l0", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "lines", "kind": "str", "required": True}]},
+    "term-snapshot-grid": {"id": "term-snapshot-grid", "cls": "read", "auth": "l0", "params": [{"name": "session", "kind": "str", "required": True}]},
+    "term-send-keys": {"id": "term-send-keys", "cls": "blind", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "keys", "kind": "str", "required": True}]},
+    "term-simulate-chord": {"id": "term-simulate-chord", "cls": "blind", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "chord", "kind": "str", "required": True}]},
+    "term-mark-list": {"id": "term-mark-list", "cls": "read", "auth": "l0", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "kind", "kind": "str", "required": True}, {"name": "user", "kind": "str", "required": True}]},
+    "term-mark-clear": {"id": "term-mark-clear", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "kind", "kind": "str", "required": True}]},
+    "term-mark-jump": {"id": "term-mark-jump", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "kind", "kind": "str", "required": True}, {"name": "index", "kind": "int", "required": False}]},
+    "term-recent-dirs-list": {"id": "term-recent-dirs-list", "cls": "read", "auth": "l0", "params": []},
+    "term-jump-to-recent-dir": {"id": "term-jump-to-recent-dir", "cls": "converging", "auth": "l1", "params": [{"name": "index", "kind": "int", "required": False}]},
+    "term-suggest-list": {"id": "term-suggest-list", "cls": "read", "auth": "l0", "params": []},
+    "term-suggest-inject": {"id": "term-suggest-inject", "cls": "blind", "auth": "l1", "params": [{"name": "id", "kind": "str", "required": True}]},
+    "term-suggest-dismiss": {"id": "term-suggest-dismiss", "cls": "converging", "auth": "l1", "params": [{"name": "id", "kind": "str", "required": True}]},
+    "term-attention-get": {"id": "term-attention-get", "cls": "read", "auth": "l0", "params": []},
+    "term-attention-set": {"id": "term-attention-set", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}, {"name": "on", "kind": "bool", "required": True}]},
+    "term-frame-perf": {"id": "term-frame-perf", "cls": "read", "auth": "l0", "params": []},
+    "term-watcher-register": {"id": "term-watcher-register", "cls": "converging", "auth": "l1", "params": [{"name": "spec", "kind": "str", "required": True}]},
+    "term-watcher-list": {"id": "term-watcher-list", "cls": "read", "auth": "l0", "params": []},
+    "term-watcher-inspect": {"id": "term-watcher-inspect", "cls": "read", "auth": "l0", "params": [{"name": "id", "kind": "str", "required": True}]},
+    "term-watcher-tick": {"id": "term-watcher-tick", "cls": "converging", "auth": "l1", "params": [{"name": "id", "kind": "str", "required": True}]},
+    "term-watcher-delete": {"id": "term-watcher-delete", "cls": "converging", "auth": "l1", "params": [{"name": "id", "kind": "str", "required": True}]},
     "pane-session-new": {"id": "pane-session-new", "cls": "converging", "auth": "l1", "params": [{"name": "name_panesessionid", "kind": "str", "required": True}]},
     "pane-session-kill": {"id": "pane-session-kill", "cls": "converging", "auth": "l1", "params": [{"name": "session", "kind": "str", "required": True}]},
     "pane-session-list": {"id": "pane-session-list", "cls": "read", "auth": "l0", "params": []},
@@ -225,6 +251,16 @@ ACTIONS = {
     "browser-snapshot": {"id": "browser-snapshot", "cls": "converging", "auth": "l1", "params": [{"name": "id", "kind": "str", "required": True}]},
     "browser-snapshot-get": {"id": "browser-snapshot-get", "cls": "read", "auth": "l0", "params": [{"name": "id", "kind": "str", "required": True}]},
     "browser-set-dom": {"id": "browser-set-dom", "cls": "blind", "auth": "l1", "params": [{"name": "id", "kind": "str", "required": True}, {"name": "dom", "kind": "str", "required": True}]},
+    "file-list": {"id": "file-list", "cls": "read", "auth": "l0", "params": [{"name": "path", "kind": "str", "required": False}]},
+    "file-preview": {"id": "file-preview", "cls": "read", "auth": "l0", "params": [{"name": "path", "kind": "str", "required": False}]},
+    "file-copy": {"id": "file-copy", "cls": "converging", "auth": "l1", "params": [{"name": "src", "kind": "str", "required": True}, {"name": "dst", "kind": "str", "required": True}]},
+    "file-move": {"id": "file-move", "cls": "converging", "auth": "l1", "params": [{"name": "src", "kind": "str", "required": True}, {"name": "dst", "kind": "str", "required": True}]},
+    "file-rename": {"id": "file-rename", "cls": "converging", "auth": "l1", "params": [{"name": "path", "kind": "str", "required": False}, {"name": "name", "kind": "str", "required": False}]},
+    "file-create": {"id": "file-create", "cls": "converging", "auth": "l1", "params": [{"name": "kind", "kind": "str", "required": True}, {"name": "dir", "kind": "str", "required": True}, {"name": "path", "kind": "str", "required": False}]},
+    "file-trash": {"id": "file-trash", "cls": "converging", "auth": "l3", "params": [{"name": "path", "kind": "str", "required": False}]},
+    "file-search": {"id": "file-search", "cls": "read", "auth": "l0", "params": [{"name": "root", "kind": "str", "required": True}, {"name": "query", "kind": "str", "required": True}]},
+    "file-bookmark-list": {"id": "file-bookmark-list", "cls": "read", "auth": "l0", "params": []},
+    "file-bookmark-go": {"id": "file-bookmark-go", "cls": "converging", "auth": "l1", "params": [{"name": "index", "kind": "int", "required": False}]},
     "theme-select": {"id": "theme-select", "cls": "converging", "auth": "l0", "params": [{"name": "theme", "kind": "str", "required": True}]},
     "theme-set-appearance": {"id": "theme-set-appearance", "cls": "converging", "auth": "l0", "params": [{"name": "appearance", "kind": "str", "required": True}, {"name": "dark", "kind": "str", "required": True}, {"name": "auto", "kind": "str", "required": True}]},
     "theme-set-font-scale": {"id": "theme-set-font-scale", "cls": "converging", "auth": "l0", "params": [{"name": "scale", "kind": "int", "required": True}]},
@@ -560,6 +596,10 @@ def bindings_list(mode: str | None = None):
 def bindings_check_conflicts(scope: str | None = None):
     """Bindings check conflicts"""
     return {"action": "bindings-check-conflicts", "args": {"scope": scope}}
+
+def action_chain(steps: str):
+    """Action chain"""
+    return {"action": "action-chain", "args": {"steps": steps}}
 
 def input_inject_key(key: str, state: str, modifiers: str):
     """Input inject key"""
@@ -1001,6 +1041,106 @@ def layer_list():
     """Layer list"""
     return {"action": "layer-list", "args": {}}
 
+def term_spawn(argv: str, cwd: str, profile_sessionid: str):
+    """Term spawn"""
+    return {"action": "term-spawn", "args": {"argv": argv, "cwd": cwd, "profile_sessionid": profile_sessionid}}
+
+def term_close(session: str):
+    """Term close"""
+    return {"action": "term-close", "args": {"session": session}}
+
+def term_switch(session: str):
+    """Term switch"""
+    return {"action": "term-switch", "args": {"session": session}}
+
+def term_resize(session: str, cols: str, rows: str):
+    """Term resize"""
+    return {"action": "term-resize", "args": {"session": session, "cols": cols, "rows": rows}}
+
+def term_list():
+    """Term list"""
+    return {"action": "term-list", "args": {}}
+
+def term_get_output(session: str, lines: str):
+    """Term get output"""
+    return {"action": "term-get-output", "args": {"session": session, "lines": lines}}
+
+def term_snapshot_grid(session: str):
+    """Term snapshot grid"""
+    return {"action": "term-snapshot-grid", "args": {"session": session}}
+
+def term_send_keys(session: str, keys: str):
+    """Term send keys"""
+    return {"action": "term-send-keys", "args": {"session": session, "keys": keys}}
+
+def term_simulate_chord(session: str, chord: str):
+    """Term simulate chord"""
+    return {"action": "term-simulate-chord", "args": {"session": session, "chord": chord}}
+
+def term_mark_list(session: str, kind: str, user: str):
+    """Term mark list"""
+    return {"action": "term-mark-list", "args": {"session": session, "kind": kind, "user": user}}
+
+def term_mark_clear(session: str, kind: str):
+    """Term mark clear"""
+    return {"action": "term-mark-clear", "args": {"session": session, "kind": kind}}
+
+def term_mark_jump(session: str, kind: str, index: int | None = None):
+    """Term mark jump"""
+    return {"action": "term-mark-jump", "args": {"session": session, "kind": kind, "index": index}}
+
+def term_recent_dirs_list():
+    """Term recent dirs list"""
+    return {"action": "term-recent-dirs-list", "args": {}}
+
+def term_jump_to_recent_dir(index: int | None = None):
+    """Term jump to recent dir"""
+    return {"action": "term-jump-to-recent-dir", "args": {"index": index}}
+
+def term_suggest_list():
+    """Term suggest list"""
+    return {"action": "term-suggest-list", "args": {}}
+
+def term_suggest_inject(id: str):
+    """Term suggest inject"""
+    return {"action": "term-suggest-inject", "args": {"id": id}}
+
+def term_suggest_dismiss(id: str):
+    """Term suggest dismiss"""
+    return {"action": "term-suggest-dismiss", "args": {"id": id}}
+
+def term_attention_get():
+    """Term attention get"""
+    return {"action": "term-attention-get", "args": {}}
+
+def term_attention_set(session: str, on: bool):
+    """Term attention set"""
+    return {"action": "term-attention-set", "args": {"session": session, "on": on}}
+
+def term_frame_perf():
+    """Term frame perf"""
+    return {"action": "term-frame-perf", "args": {}}
+
+def term_watcher_register(spec: str):
+    """Term watcher register"""
+    return {"action": "term-watcher-register", "args": {"spec": spec}}
+
+def term_watcher_list():
+    """Term watcher list"""
+    return {"action": "term-watcher-list", "args": {}}
+
+def term_watcher_inspect(id: str):
+    """Term watcher inspect"""
+    return {"action": "term-watcher-inspect", "args": {"id": id}}
+
+def term_watcher_tick(id: str):
+    """Term watcher tick"""
+    return {"action": "term-watcher-tick", "args": {"id": id}}
+
+def term_watcher_delete(id: str):
+    """Term watcher delete"""
+    return {"action": "term-watcher-delete", "args": {"id": id}}
+
 def pane_session_new(name_panesessionid: str):
     """Pane session new"""
     return {"action": "pane-session-new", "args": {"name_panesessionid": name_panesessionid}}
@@ -1140,6 +1280,46 @@ def browser_snapshot_get(id: str):
 def browser_set_dom(id: str, dom: str):
     """Browser set dom"""
     return {"action": "browser-set-dom", "args": {"id": id, "dom": dom}}
+
+def file_list(path: str | None = None):
+    """File list"""
+    return {"action": "file-list", "args": {"path": path}}
+
+def file_preview(path: str | None = None):
+    """File preview"""
+    return {"action": "file-preview", "args": {"path": path}}
+
+def file_copy(src: str, dst: str):
+    """File copy"""
+    return {"action": "file-copy", "args": {"src": src, "dst": dst}}
+
+def file_move(src: str, dst: str):
+    """File move"""
+    return {"action": "file-move", "args": {"src": src, "dst": dst}}
+
+def file_rename(path: str | None = None, name: str | None = None):
+    """File rename"""
+    return {"action": "file-rename", "args": {"path": path, "name": name}}
+
+def file_create(kind: str, dir: str, path: str | None = None):
+    """File create"""
+    return {"action": "file-create", "args": {"kind": kind, "dir": dir, "path": path}}
+
+def file_trash(path: str | None = None):
+    """File trash"""
+    return {"action": "file-trash", "args": {"path": path}}
+
+def file_search(root: str, query: str):
+    """File search"""
+    return {"action": "file-search", "args": {"root": root, "query": query}}
+
+def file_bookmark_list():
+    """File bookmark list"""
+    return {"action": "file-bookmark-list", "args": {}}
+
+def file_bookmark_go(index: int | None = None):
+    """File bookmark go"""
+    return {"action": "file-bookmark-go", "args": {"index": index}}
 
 def theme_select(theme: str):
     """Theme select"""

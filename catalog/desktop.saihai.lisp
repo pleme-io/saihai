@@ -1,5 +1,5 @@
 ;; ─────────────────────────────────────────────────────────────────────
-;; THE DESKTOP ACTION CATALOG — 248 actions.
+;; THE DESKTOP ACTION CATALOG — 284 actions.
 ;;
 ;; GENERATED from docs/saihai-desktop-action-spec.md §3 by
 ;; scratchpad/convert_catalog.py, then committed. Regenerating is how new rows
@@ -490,6 +490,11 @@
   :category :input :kind :observe :auth :l0
   :params ((defparam :name "scope" :kind :str :required #f))
   :observed ((defobserved :domain :inputs :field "conflicts")))
+
+(defaction :id "action-chain" :gloss "Action chain"
+  :category :input :kind :mutate :auth :l3
+  :params ((defparam :name "steps" :kind :str :required #t))
+  :observed ())
 
 (defaction :id "input-inject-key" :gloss "Input inject key"
   :category :input :kind :mutate :auth :l3
@@ -1134,6 +1139,144 @@
   :params ()
   :observed ((defobserved :domain :windows :field "list")))
 
+(defaction :id "term-spawn" :gloss "Term spawn"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "argv" :kind :str :required #t)
+           (defparam :name "cwd" :kind :str :required #t)
+           (defparam :name "profile_sessionid" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "spawn")))
+
+(defaction :id "term-close" :gloss "Term close"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "close")))
+
+(defaction :id "term-switch" :gloss "Term switch"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "choose")))
+
+(defaction :id "term-resize" :gloss "Term resize"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "cols" :kind :str :required #t)
+           (defparam :name "rows" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "resize")))
+
+(defaction :id "term-list" :gloss "Term list"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "term-get-output" :gloss "Term get output"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "lines" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "output")))
+
+(defaction :id "term-snapshot-grid" :gloss "Term snapshot grid"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "session" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "grid")))
+
+(defaction :id "term-send-keys" :gloss "Term send keys"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "keys" :kind :str :required #t))
+  :observed ())
+
+(defaction :id "term-simulate-chord" :gloss "Term simulate chord"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "chord" :kind :str :required #t))
+  :observed ())
+
+(defaction :id "term-mark-list" :gloss "Term mark list"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "kind" :kind :str :required #t)
+           (defparam :name "user" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "term-mark-clear" :gloss "Term mark clear"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "kind" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "clear")))
+
+(defaction :id "term-mark-jump" :gloss "Term mark jump"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "kind" :kind :str :required #t)
+           (defparam :name "index" :kind :int :required #f))
+  :observed ((defobserved :domain :windows :field "jump")))
+
+(defaction :id "term-recent-dirs-list" :gloss "Term recent dirs list"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "term-jump-to-recent-dir" :gloss "Term jump to recent dir"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "index" :kind :int :required #f))
+  :observed ((defobserved :domain :windows :field "dir")))
+
+(defaction :id "term-suggest-list" :gloss "Term suggest list"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "term-suggest-inject" :gloss "Term suggest inject"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "id" :kind :str :required #t))
+  :observed ())
+
+(defaction :id "term-suggest-dismiss" :gloss "Term suggest dismiss"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "id" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "dismiss")))
+
+(defaction :id "term-attention-get" :gloss "Term attention get"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "get")))
+
+(defaction :id "term-attention-set" :gloss "Term attention set"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "session" :kind :str :required #t)
+           (defparam :name "on" :kind :bool :required #t))
+  :observed ((defobserved :domain :windows :field "set")))
+
+(defaction :id "term-frame-perf" :gloss "Term frame perf"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "perf")))
+
+(defaction :id "term-watcher-register" :gloss "Term watcher register"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "spec" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "register")))
+
+(defaction :id "term-watcher-list" :gloss "Term watcher list"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "term-watcher-inspect" :gloss "Term watcher inspect"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "id" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "inspect")))
+
+(defaction :id "term-watcher-tick" :gloss "Term watcher tick"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "id" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "tick")))
+
+(defaction :id "term-watcher-delete" :gloss "Term watcher delete"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "id" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "remove")))
+
 (defaction :id "pane-session-new" :gloss "Pane session new"
   :category :window :kind :mutate :auth :l1
   :params ((defparam :name "name_panesessionid" :kind :str :required #t))
@@ -1317,6 +1460,62 @@
   :params ((defparam :name "id" :kind :str :required #t)
            (defparam :name "dom" :kind :str :required #t))
   :observed ())
+
+(defaction :id "file-list" :gloss "File list"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "path" :kind :str :required #f))
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "file-preview" :gloss "File preview"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "path" :kind :str :required #f))
+  :observed ((defobserved :domain :windows :field "preview")))
+
+(defaction :id "file-copy" :gloss "File copy"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "src" :kind :str :required #t)
+           (defparam :name "dst" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "copy")))
+
+(defaction :id "file-move" :gloss "File move"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "src" :kind :str :required #t)
+           (defparam :name "dst" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "relocate")))
+
+(defaction :id "file-rename" :gloss "File rename"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "path" :kind :str :required #f)
+           (defparam :name "name" :kind :str :required #f))
+  :observed ((defobserved :domain :windows :field "rename")))
+
+(defaction :id "file-create" :gloss "File create"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "kind" :kind :str :required #t)
+           (defparam :name "dir" :kind :str :required #t)
+           (defparam :name "path" :kind :str :required #f))
+  :observed ((defobserved :domain :windows :field "create")))
+
+(defaction :id "file-trash" :gloss "File trash"
+  :category :launch :kind :mutate :auth :l3
+  :params ((defparam :name "path" :kind :str :required #f))
+  :observed ((defobserved :domain :windows :field "trash")))
+
+(defaction :id "file-search" :gloss "File search"
+  :category :launch :kind :observe :auth :l0
+  :params ((defparam :name "root" :kind :str :required #t)
+           (defparam :name "query" :kind :str :required #t))
+  :observed ((defobserved :domain :windows :field "search")))
+
+(defaction :id "file-bookmark-list" :gloss "File bookmark list"
+  :category :launch :kind :observe :auth :l0
+  :params ()
+  :observed ((defobserved :domain :windows :field "list")))
+
+(defaction :id "file-bookmark-go" :gloss "File bookmark go"
+  :category :launch :kind :mutate :auth :l1
+  :params ((defparam :name "index" :kind :int :required #f))
+  :observed ((defobserved :domain :windows :field "destination")))
 
 (defaction :id "theme-select" :gloss "Theme select"
   :category :theme :kind :mutate :auth :l0

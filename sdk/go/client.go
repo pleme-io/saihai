@@ -95,6 +95,7 @@ var Actions = map[string]ActionMeta{
 	"input-release-keyboard": {ID: "input-release-keyboard", Class: "converging", Auth: "l1", Params: []Param{{Name: "scope", Kind: "str", Required: false}, }},
 	"bindings-list": {ID: "bindings-list", Class: "read", Auth: "l0", Params: []Param{{Name: "mode", Kind: "str", Required: false}, }},
 	"bindings-check-conflicts": {ID: "bindings-check-conflicts", Class: "read", Auth: "l0", Params: []Param{{Name: "scope", Kind: "str", Required: false}, }},
+	"action-chain": {ID: "action-chain", Class: "blind", Auth: "l3", Params: []Param{{Name: "steps", Kind: "str", Required: true}, }},
 	"input-inject-key": {ID: "input-inject-key", Class: "blind", Auth: "l3", Params: []Param{{Name: "key", Kind: "str", Required: true}, {Name: "state", Kind: "str", Required: true}, {Name: "modifiers", Kind: "str", Required: true}, }},
 	"input-inject-chord": {ID: "input-inject-chord", Class: "blind", Auth: "l3", Params: []Param{{Name: "chord", Kind: "str", Required: true}, }},
 	"input-inject-text": {ID: "input-inject-text", Class: "blind", Auth: "l3", Params: []Param{{Name: "text", Kind: "str", Required: true}, {Name: "method", Kind: "str", Required: true}, }},
@@ -205,6 +206,31 @@ var Actions = map[string]ActionMeta{
 	"layer-spawn": {ID: "layer-spawn", Class: "converging", Auth: "l1", Params: []Param{{Name: "client", Kind: "str", Required: true}, {Name: "layer", Kind: "str", Required: true}, {Name: "anchor", Kind: "str", Required: true}, {Name: "exclusive_zone", Kind: "str", Required: true}, {Name: "keyboard", Kind: "str", Required: true}, {Name: "output", Kind: "selector", Required: false}, }},
 	"layer-kill": {ID: "layer-kill", Class: "converging", Auth: "l1", Params: []Param{{Name: "client", Kind: "str", Required: true}, {Name: "teardown", Kind: "str", Required: true}, }},
 	"layer-list": {ID: "layer-list", Class: "read", Auth: "l1", Params: []Param{}},
+	"term-spawn": {ID: "term-spawn", Class: "converging", Auth: "l1", Params: []Param{{Name: "argv", Kind: "str", Required: true}, {Name: "cwd", Kind: "str", Required: true}, {Name: "profile_sessionid", Kind: "str", Required: true}, }},
+	"term-close": {ID: "term-close", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, }},
+	"term-switch": {ID: "term-switch", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, }},
+	"term-resize": {ID: "term-resize", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "cols", Kind: "str", Required: true}, {Name: "rows", Kind: "str", Required: true}, }},
+	"term-list": {ID: "term-list", Class: "read", Auth: "l0", Params: []Param{}},
+	"term-get-output": {ID: "term-get-output", Class: "read", Auth: "l0", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "lines", Kind: "str", Required: true}, }},
+	"term-snapshot-grid": {ID: "term-snapshot-grid", Class: "read", Auth: "l0", Params: []Param{{Name: "session", Kind: "str", Required: true}, }},
+	"term-send-keys": {ID: "term-send-keys", Class: "blind", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "keys", Kind: "str", Required: true}, }},
+	"term-simulate-chord": {ID: "term-simulate-chord", Class: "blind", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "chord", Kind: "str", Required: true}, }},
+	"term-mark-list": {ID: "term-mark-list", Class: "read", Auth: "l0", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "kind", Kind: "str", Required: true}, {Name: "user", Kind: "str", Required: true}, }},
+	"term-mark-clear": {ID: "term-mark-clear", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "kind", Kind: "str", Required: true}, }},
+	"term-mark-jump": {ID: "term-mark-jump", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "kind", Kind: "str", Required: true}, {Name: "index", Kind: "int", Required: false}, }},
+	"term-recent-dirs-list": {ID: "term-recent-dirs-list", Class: "read", Auth: "l0", Params: []Param{}},
+	"term-jump-to-recent-dir": {ID: "term-jump-to-recent-dir", Class: "converging", Auth: "l1", Params: []Param{{Name: "index", Kind: "int", Required: false}, }},
+	"term-suggest-list": {ID: "term-suggest-list", Class: "read", Auth: "l0", Params: []Param{}},
+	"term-suggest-inject": {ID: "term-suggest-inject", Class: "blind", Auth: "l1", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
+	"term-suggest-dismiss": {ID: "term-suggest-dismiss", Class: "converging", Auth: "l1", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
+	"term-attention-get": {ID: "term-attention-get", Class: "read", Auth: "l0", Params: []Param{}},
+	"term-attention-set": {ID: "term-attention-set", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, {Name: "on", Kind: "bool", Required: true}, }},
+	"term-frame-perf": {ID: "term-frame-perf", Class: "read", Auth: "l0", Params: []Param{}},
+	"term-watcher-register": {ID: "term-watcher-register", Class: "converging", Auth: "l1", Params: []Param{{Name: "spec", Kind: "str", Required: true}, }},
+	"term-watcher-list": {ID: "term-watcher-list", Class: "read", Auth: "l0", Params: []Param{}},
+	"term-watcher-inspect": {ID: "term-watcher-inspect", Class: "read", Auth: "l0", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
+	"term-watcher-tick": {ID: "term-watcher-tick", Class: "converging", Auth: "l1", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
+	"term-watcher-delete": {ID: "term-watcher-delete", Class: "converging", Auth: "l1", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
 	"pane-session-new": {ID: "pane-session-new", Class: "converging", Auth: "l1", Params: []Param{{Name: "name_panesessionid", Kind: "str", Required: true}, }},
 	"pane-session-kill": {ID: "pane-session-kill", Class: "converging", Auth: "l1", Params: []Param{{Name: "session", Kind: "str", Required: true}, }},
 	"pane-session-list": {ID: "pane-session-list", Class: "read", Auth: "l0", Params: []Param{}},
@@ -240,6 +266,16 @@ var Actions = map[string]ActionMeta{
 	"browser-snapshot": {ID: "browser-snapshot", Class: "converging", Auth: "l1", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
 	"browser-snapshot-get": {ID: "browser-snapshot-get", Class: "read", Auth: "l0", Params: []Param{{Name: "id", Kind: "str", Required: true}, }},
 	"browser-set-dom": {ID: "browser-set-dom", Class: "blind", Auth: "l1", Params: []Param{{Name: "id", Kind: "str", Required: true}, {Name: "dom", Kind: "str", Required: true}, }},
+	"file-list": {ID: "file-list", Class: "read", Auth: "l0", Params: []Param{{Name: "path", Kind: "str", Required: false}, }},
+	"file-preview": {ID: "file-preview", Class: "read", Auth: "l0", Params: []Param{{Name: "path", Kind: "str", Required: false}, }},
+	"file-copy": {ID: "file-copy", Class: "converging", Auth: "l1", Params: []Param{{Name: "src", Kind: "str", Required: true}, {Name: "dst", Kind: "str", Required: true}, }},
+	"file-move": {ID: "file-move", Class: "converging", Auth: "l1", Params: []Param{{Name: "src", Kind: "str", Required: true}, {Name: "dst", Kind: "str", Required: true}, }},
+	"file-rename": {ID: "file-rename", Class: "converging", Auth: "l1", Params: []Param{{Name: "path", Kind: "str", Required: false}, {Name: "name", Kind: "str", Required: false}, }},
+	"file-create": {ID: "file-create", Class: "converging", Auth: "l1", Params: []Param{{Name: "kind", Kind: "str", Required: true}, {Name: "dir", Kind: "str", Required: true}, {Name: "path", Kind: "str", Required: false}, }},
+	"file-trash": {ID: "file-trash", Class: "converging", Auth: "l3", Params: []Param{{Name: "path", Kind: "str", Required: false}, }},
+	"file-search": {ID: "file-search", Class: "read", Auth: "l0", Params: []Param{{Name: "root", Kind: "str", Required: true}, {Name: "query", Kind: "str", Required: true}, }},
+	"file-bookmark-list": {ID: "file-bookmark-list", Class: "read", Auth: "l0", Params: []Param{}},
+	"file-bookmark-go": {ID: "file-bookmark-go", Class: "converging", Auth: "l1", Params: []Param{{Name: "index", Kind: "int", Required: false}, }},
 	"theme-select": {ID: "theme-select", Class: "converging", Auth: "l0", Params: []Param{{Name: "theme", Kind: "str", Required: true}, }},
 	"theme-set-appearance": {ID: "theme-set-appearance", Class: "converging", Auth: "l0", Params: []Param{{Name: "appearance", Kind: "str", Required: true}, {Name: "dark", Kind: "str", Required: true}, {Name: "auto", Kind: "str", Required: true}, }},
 	"theme-set-font-scale": {ID: "theme-set-font-scale", Class: "converging", Auth: "l0", Params: []Param{{Name: "scale", Kind: "int", Required: true}, }},
@@ -872,6 +908,13 @@ func BindingsList(mode string) Call {
 func BindingsCheckConflicts(scope string) Call {
 	return Call{Action: "bindings-check-conflicts", Args: map[string]any{
 		"scope": scope,
+	}}
+}
+
+// ActionChain — Action chain
+func ActionChain(steps string) Call {
+	return Call{Action: "action-chain", Args: map[string]any{
+		"steps": steps,
 	}}
 }
 
@@ -1722,6 +1765,188 @@ func LayerList() Call {
 	}}
 }
 
+// TermSpawn — Term spawn
+func TermSpawn(argv string, cwd string, profileSessionid string) Call {
+	return Call{Action: "term-spawn", Args: map[string]any{
+		"argv": argv,
+		"cwd": cwd,
+		"profile_sessionid": profileSessionid,
+	}}
+}
+
+// TermClose — Term close
+func TermClose(session string) Call {
+	return Call{Action: "term-close", Args: map[string]any{
+		"session": session,
+	}}
+}
+
+// TermSwitch — Term switch
+func TermSwitch(session string) Call {
+	return Call{Action: "term-switch", Args: map[string]any{
+		"session": session,
+	}}
+}
+
+// TermResize — Term resize
+func TermResize(session string, cols string, rows string) Call {
+	return Call{Action: "term-resize", Args: map[string]any{
+		"session": session,
+		"cols": cols,
+		"rows": rows,
+	}}
+}
+
+// TermList — Term list
+func TermList() Call {
+	return Call{Action: "term-list", Args: map[string]any{
+	}}
+}
+
+// TermGetOutput — Term get output
+func TermGetOutput(session string, lines string) Call {
+	return Call{Action: "term-get-output", Args: map[string]any{
+		"session": session,
+		"lines": lines,
+	}}
+}
+
+// TermSnapshotGrid — Term snapshot grid
+func TermSnapshotGrid(session string) Call {
+	return Call{Action: "term-snapshot-grid", Args: map[string]any{
+		"session": session,
+	}}
+}
+
+// TermSendKeys — Term send keys
+func TermSendKeys(session string, keys string) Call {
+	return Call{Action: "term-send-keys", Args: map[string]any{
+		"session": session,
+		"keys": keys,
+	}}
+}
+
+// TermSimulateChord — Term simulate chord
+func TermSimulateChord(session string, chord string) Call {
+	return Call{Action: "term-simulate-chord", Args: map[string]any{
+		"session": session,
+		"chord": chord,
+	}}
+}
+
+// TermMarkList — Term mark list
+func TermMarkList(session string, kind string, user string) Call {
+	return Call{Action: "term-mark-list", Args: map[string]any{
+		"session": session,
+		"kind": kind,
+		"user": user,
+	}}
+}
+
+// TermMarkClear — Term mark clear
+func TermMarkClear(session string, kind string) Call {
+	return Call{Action: "term-mark-clear", Args: map[string]any{
+		"session": session,
+		"kind": kind,
+	}}
+}
+
+// TermMarkJump — Term mark jump
+func TermMarkJump(session string, kind string, index int) Call {
+	return Call{Action: "term-mark-jump", Args: map[string]any{
+		"session": session,
+		"kind": kind,
+		"index": index,
+	}}
+}
+
+// TermRecentDirsList — Term recent dirs list
+func TermRecentDirsList() Call {
+	return Call{Action: "term-recent-dirs-list", Args: map[string]any{
+	}}
+}
+
+// TermJumpToRecentDir — Term jump to recent dir
+func TermJumpToRecentDir(index int) Call {
+	return Call{Action: "term-jump-to-recent-dir", Args: map[string]any{
+		"index": index,
+	}}
+}
+
+// TermSuggestList — Term suggest list
+func TermSuggestList() Call {
+	return Call{Action: "term-suggest-list", Args: map[string]any{
+	}}
+}
+
+// TermSuggestInject — Term suggest inject
+func TermSuggestInject(id string) Call {
+	return Call{Action: "term-suggest-inject", Args: map[string]any{
+		"id": id,
+	}}
+}
+
+// TermSuggestDismiss — Term suggest dismiss
+func TermSuggestDismiss(id string) Call {
+	return Call{Action: "term-suggest-dismiss", Args: map[string]any{
+		"id": id,
+	}}
+}
+
+// TermAttentionGet — Term attention get
+func TermAttentionGet() Call {
+	return Call{Action: "term-attention-get", Args: map[string]any{
+	}}
+}
+
+// TermAttentionSet — Term attention set
+func TermAttentionSet(session string, on bool) Call {
+	return Call{Action: "term-attention-set", Args: map[string]any{
+		"session": session,
+		"on": on,
+	}}
+}
+
+// TermFramePerf — Term frame perf
+func TermFramePerf() Call {
+	return Call{Action: "term-frame-perf", Args: map[string]any{
+	}}
+}
+
+// TermWatcherRegister — Term watcher register
+func TermWatcherRegister(spec string) Call {
+	return Call{Action: "term-watcher-register", Args: map[string]any{
+		"spec": spec,
+	}}
+}
+
+// TermWatcherList — Term watcher list
+func TermWatcherList() Call {
+	return Call{Action: "term-watcher-list", Args: map[string]any{
+	}}
+}
+
+// TermWatcherInspect — Term watcher inspect
+func TermWatcherInspect(id string) Call {
+	return Call{Action: "term-watcher-inspect", Args: map[string]any{
+		"id": id,
+	}}
+}
+
+// TermWatcherTick — Term watcher tick
+func TermWatcherTick(id string) Call {
+	return Call{Action: "term-watcher-tick", Args: map[string]any{
+		"id": id,
+	}}
+}
+
+// TermWatcherDelete — Term watcher delete
+func TermWatcherDelete(id string) Call {
+	return Call{Action: "term-watcher-delete", Args: map[string]any{
+		"id": id,
+	}}
+}
+
 // PaneSessionNew — Pane session new
 func PaneSessionNew(namePanesessionid string) Call {
 	return Call{Action: "pane-session-new", Args: map[string]any{
@@ -1966,6 +2191,81 @@ func BrowserSetDom(id string, dom string) Call {
 	return Call{Action: "browser-set-dom", Args: map[string]any{
 		"id": id,
 		"dom": dom,
+	}}
+}
+
+// FileList — File list
+func FileList(path string) Call {
+	return Call{Action: "file-list", Args: map[string]any{
+		"path": path,
+	}}
+}
+
+// FilePreview — File preview
+func FilePreview(path string) Call {
+	return Call{Action: "file-preview", Args: map[string]any{
+		"path": path,
+	}}
+}
+
+// FileCopy — File copy
+func FileCopy(src string, dst string) Call {
+	return Call{Action: "file-copy", Args: map[string]any{
+		"src": src,
+		"dst": dst,
+	}}
+}
+
+// FileMove — File move
+func FileMove(src string, dst string) Call {
+	return Call{Action: "file-move", Args: map[string]any{
+		"src": src,
+		"dst": dst,
+	}}
+}
+
+// FileRename — File rename
+func FileRename(path string, name string) Call {
+	return Call{Action: "file-rename", Args: map[string]any{
+		"path": path,
+		"name": name,
+	}}
+}
+
+// FileCreate — File create
+func FileCreate(kind string, dir string, path string) Call {
+	return Call{Action: "file-create", Args: map[string]any{
+		"kind": kind,
+		"dir": dir,
+		"path": path,
+	}}
+}
+
+// FileTrash — File trash
+func FileTrash(path string) Call {
+	return Call{Action: "file-trash", Args: map[string]any{
+		"path": path,
+	}}
+}
+
+// FileSearch — File search
+func FileSearch(root string, query string) Call {
+	return Call{Action: "file-search", Args: map[string]any{
+		"root": root,
+		"query": query,
+	}}
+}
+
+// FileBookmarkList — File bookmark list
+func FileBookmarkList() Call {
+	return Call{Action: "file-bookmark-list", Args: map[string]any{
+	}}
+}
+
+// FileBookmarkGo — File bookmark go
+func FileBookmarkGo(index int) Call {
+	return Call{Action: "file-bookmark-go", Args: map[string]any{
+		"index": index,
 	}}
 }
 

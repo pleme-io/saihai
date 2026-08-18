@@ -91,6 +91,7 @@ export const ACTIONS: Record<string, ActionMeta> = {
   "input-release-keyboard": { id: "input-release-keyboard", cls: "converging", auth: "l1", params: [{ name: "scope", kind: "str", required: false }] },
   "bindings-list": { id: "bindings-list", cls: "read", auth: "l0", params: [{ name: "mode", kind: "str", required: false }] },
   "bindings-check-conflicts": { id: "bindings-check-conflicts", cls: "read", auth: "l0", params: [{ name: "scope", kind: "str", required: false }] },
+  "action-chain": { id: "action-chain", cls: "blind", auth: "l3", params: [{ name: "steps", kind: "str", required: true }] },
   "input-inject-key": { id: "input-inject-key", cls: "blind", auth: "l3", params: [{ name: "key", kind: "str", required: true }, { name: "state", kind: "str", required: true }, { name: "modifiers", kind: "str", required: true }] },
   "input-inject-chord": { id: "input-inject-chord", cls: "blind", auth: "l3", params: [{ name: "chord", kind: "str", required: true }] },
   "input-inject-text": { id: "input-inject-text", cls: "blind", auth: "l3", params: [{ name: "text", kind: "str", required: true }, { name: "method", kind: "str", required: true }] },
@@ -201,6 +202,31 @@ export const ACTIONS: Record<string, ActionMeta> = {
   "layer-spawn": { id: "layer-spawn", cls: "converging", auth: "l1", params: [{ name: "client", kind: "str", required: true }, { name: "layer", kind: "str", required: true }, { name: "anchor", kind: "str", required: true }, { name: "exclusive_zone", kind: "str", required: true }, { name: "keyboard", kind: "str", required: true }, { name: "output", kind: "selector", required: false }] },
   "layer-kill": { id: "layer-kill", cls: "converging", auth: "l1", params: [{ name: "client", kind: "str", required: true }, { name: "teardown", kind: "str", required: true }] },
   "layer-list": { id: "layer-list", cls: "read", auth: "l1", params: [] },
+  "term-spawn": { id: "term-spawn", cls: "converging", auth: "l1", params: [{ name: "argv", kind: "str", required: true }, { name: "cwd", kind: "str", required: true }, { name: "profile_sessionid", kind: "str", required: true }] },
+  "term-close": { id: "term-close", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }] },
+  "term-switch": { id: "term-switch", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }] },
+  "term-resize": { id: "term-resize", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }, { name: "cols", kind: "str", required: true }, { name: "rows", kind: "str", required: true }] },
+  "term-list": { id: "term-list", cls: "read", auth: "l0", params: [] },
+  "term-get-output": { id: "term-get-output", cls: "read", auth: "l0", params: [{ name: "session", kind: "str", required: true }, { name: "lines", kind: "str", required: true }] },
+  "term-snapshot-grid": { id: "term-snapshot-grid", cls: "read", auth: "l0", params: [{ name: "session", kind: "str", required: true }] },
+  "term-send-keys": { id: "term-send-keys", cls: "blind", auth: "l1", params: [{ name: "session", kind: "str", required: true }, { name: "keys", kind: "str", required: true }] },
+  "term-simulate-chord": { id: "term-simulate-chord", cls: "blind", auth: "l1", params: [{ name: "session", kind: "str", required: true }, { name: "chord", kind: "str", required: true }] },
+  "term-mark-list": { id: "term-mark-list", cls: "read", auth: "l0", params: [{ name: "session", kind: "str", required: true }, { name: "kind", kind: "str", required: true }, { name: "user", kind: "str", required: true }] },
+  "term-mark-clear": { id: "term-mark-clear", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }, { name: "kind", kind: "str", required: true }] },
+  "term-mark-jump": { id: "term-mark-jump", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }, { name: "kind", kind: "str", required: true }, { name: "index", kind: "int", required: false }] },
+  "term-recent-dirs-list": { id: "term-recent-dirs-list", cls: "read", auth: "l0", params: [] },
+  "term-jump-to-recent-dir": { id: "term-jump-to-recent-dir", cls: "converging", auth: "l1", params: [{ name: "index", kind: "int", required: false }] },
+  "term-suggest-list": { id: "term-suggest-list", cls: "read", auth: "l0", params: [] },
+  "term-suggest-inject": { id: "term-suggest-inject", cls: "blind", auth: "l1", params: [{ name: "id", kind: "str", required: true }] },
+  "term-suggest-dismiss": { id: "term-suggest-dismiss", cls: "converging", auth: "l1", params: [{ name: "id", kind: "str", required: true }] },
+  "term-attention-get": { id: "term-attention-get", cls: "read", auth: "l0", params: [] },
+  "term-attention-set": { id: "term-attention-set", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }, { name: "on", kind: "bool", required: true }] },
+  "term-frame-perf": { id: "term-frame-perf", cls: "read", auth: "l0", params: [] },
+  "term-watcher-register": { id: "term-watcher-register", cls: "converging", auth: "l1", params: [{ name: "spec", kind: "str", required: true }] },
+  "term-watcher-list": { id: "term-watcher-list", cls: "read", auth: "l0", params: [] },
+  "term-watcher-inspect": { id: "term-watcher-inspect", cls: "read", auth: "l0", params: [{ name: "id", kind: "str", required: true }] },
+  "term-watcher-tick": { id: "term-watcher-tick", cls: "converging", auth: "l1", params: [{ name: "id", kind: "str", required: true }] },
+  "term-watcher-delete": { id: "term-watcher-delete", cls: "converging", auth: "l1", params: [{ name: "id", kind: "str", required: true }] },
   "pane-session-new": { id: "pane-session-new", cls: "converging", auth: "l1", params: [{ name: "name_panesessionid", kind: "str", required: true }] },
   "pane-session-kill": { id: "pane-session-kill", cls: "converging", auth: "l1", params: [{ name: "session", kind: "str", required: true }] },
   "pane-session-list": { id: "pane-session-list", cls: "read", auth: "l0", params: [] },
@@ -236,6 +262,16 @@ export const ACTIONS: Record<string, ActionMeta> = {
   "browser-snapshot": { id: "browser-snapshot", cls: "converging", auth: "l1", params: [{ name: "id", kind: "str", required: true }] },
   "browser-snapshot-get": { id: "browser-snapshot-get", cls: "read", auth: "l0", params: [{ name: "id", kind: "str", required: true }] },
   "browser-set-dom": { id: "browser-set-dom", cls: "blind", auth: "l1", params: [{ name: "id", kind: "str", required: true }, { name: "dom", kind: "str", required: true }] },
+  "file-list": { id: "file-list", cls: "read", auth: "l0", params: [{ name: "path", kind: "str", required: false }] },
+  "file-preview": { id: "file-preview", cls: "read", auth: "l0", params: [{ name: "path", kind: "str", required: false }] },
+  "file-copy": { id: "file-copy", cls: "converging", auth: "l1", params: [{ name: "src", kind: "str", required: true }, { name: "dst", kind: "str", required: true }] },
+  "file-move": { id: "file-move", cls: "converging", auth: "l1", params: [{ name: "src", kind: "str", required: true }, { name: "dst", kind: "str", required: true }] },
+  "file-rename": { id: "file-rename", cls: "converging", auth: "l1", params: [{ name: "path", kind: "str", required: false }, { name: "name", kind: "str", required: false }] },
+  "file-create": { id: "file-create", cls: "converging", auth: "l1", params: [{ name: "kind", kind: "str", required: true }, { name: "dir", kind: "str", required: true }, { name: "path", kind: "str", required: false }] },
+  "file-trash": { id: "file-trash", cls: "converging", auth: "l3", params: [{ name: "path", kind: "str", required: false }] },
+  "file-search": { id: "file-search", cls: "read", auth: "l0", params: [{ name: "root", kind: "str", required: true }, { name: "query", kind: "str", required: true }] },
+  "file-bookmark-list": { id: "file-bookmark-list", cls: "read", auth: "l0", params: [] },
+  "file-bookmark-go": { id: "file-bookmark-go", cls: "converging", auth: "l1", params: [{ name: "index", kind: "int", required: false }] },
   "theme-select": { id: "theme-select", cls: "converging", auth: "l0", params: [{ name: "theme", kind: "str", required: true }] },
   "theme-set-appearance": { id: "theme-set-appearance", cls: "converging", auth: "l0", params: [{ name: "appearance", kind: "str", required: true }, { name: "dark", kind: "str", required: true }, { name: "auto", kind: "str", required: true }] },
   "theme-set-font-scale": { id: "theme-set-font-scale", cls: "converging", auth: "l0", params: [{ name: "scale", kind: "int", required: true }] },
@@ -647,6 +683,11 @@ export function bindingsList(mode?: string): { action: string; args: Record<stri
 /** Bindings check conflicts */
 export function bindingsCheckConflicts(scope?: string): { action: string; args: Record<string, unknown> } {
   return { action: "bindings-check-conflicts", args: { scope: scope } };
+}
+
+/** Action chain */
+export function actionChain(steps: string): { action: string; args: Record<string, unknown> } {
+  return { action: "action-chain", args: { steps: steps } };
 }
 
 /** Input inject key */
@@ -1199,6 +1240,131 @@ export function layerList(): { action: string; args: Record<string, unknown> } {
   return { action: "layer-list", args: {  } };
 }
 
+/** Term spawn */
+export function termSpawn(argv: string, cwd: string, profileSessionid: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-spawn", args: { argv: argv, cwd: cwd, profile_sessionid: profileSessionid } };
+}
+
+/** Term close */
+export function termClose(session: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-close", args: { session: session } };
+}
+
+/** Term switch */
+export function termSwitch(session: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-switch", args: { session: session } };
+}
+
+/** Term resize */
+export function termResize(session: string, cols: string, rows: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-resize", args: { session: session, cols: cols, rows: rows } };
+}
+
+/** Term list */
+export function termList(): { action: string; args: Record<string, unknown> } {
+  return { action: "term-list", args: {  } };
+}
+
+/** Term get output */
+export function termGetOutput(session: string, lines: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-get-output", args: { session: session, lines: lines } };
+}
+
+/** Term snapshot grid */
+export function termSnapshotGrid(session: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-snapshot-grid", args: { session: session } };
+}
+
+/** Term send keys */
+export function termSendKeys(session: string, keys: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-send-keys", args: { session: session, keys: keys } };
+}
+
+/** Term simulate chord */
+export function termSimulateChord(session: string, chord: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-simulate-chord", args: { session: session, chord: chord } };
+}
+
+/** Term mark list */
+export function termMarkList(session: string, kind: string, user: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-mark-list", args: { session: session, kind: kind, user: user } };
+}
+
+/** Term mark clear */
+export function termMarkClear(session: string, kind: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-mark-clear", args: { session: session, kind: kind } };
+}
+
+/** Term mark jump */
+export function termMarkJump(session: string, kind: string, index?: number): { action: string; args: Record<string, unknown> } {
+  return { action: "term-mark-jump", args: { session: session, kind: kind, index: index } };
+}
+
+/** Term recent dirs list */
+export function termRecentDirsList(): { action: string; args: Record<string, unknown> } {
+  return { action: "term-recent-dirs-list", args: {  } };
+}
+
+/** Term jump to recent dir */
+export function termJumpToRecentDir(index?: number): { action: string; args: Record<string, unknown> } {
+  return { action: "term-jump-to-recent-dir", args: { index: index } };
+}
+
+/** Term suggest list */
+export function termSuggestList(): { action: string; args: Record<string, unknown> } {
+  return { action: "term-suggest-list", args: {  } };
+}
+
+/** Term suggest inject */
+export function termSuggestInject(id: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-suggest-inject", args: { id: id } };
+}
+
+/** Term suggest dismiss */
+export function termSuggestDismiss(id: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-suggest-dismiss", args: { id: id } };
+}
+
+/** Term attention get */
+export function termAttentionGet(): { action: string; args: Record<string, unknown> } {
+  return { action: "term-attention-get", args: {  } };
+}
+
+/** Term attention set */
+export function termAttentionSet(session: string, on: boolean): { action: string; args: Record<string, unknown> } {
+  return { action: "term-attention-set", args: { session: session, on: on } };
+}
+
+/** Term frame perf */
+export function termFramePerf(): { action: string; args: Record<string, unknown> } {
+  return { action: "term-frame-perf", args: {  } };
+}
+
+/** Term watcher register */
+export function termWatcherRegister(spec: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-watcher-register", args: { spec: spec } };
+}
+
+/** Term watcher list */
+export function termWatcherList(): { action: string; args: Record<string, unknown> } {
+  return { action: "term-watcher-list", args: {  } };
+}
+
+/** Term watcher inspect */
+export function termWatcherInspect(id: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-watcher-inspect", args: { id: id } };
+}
+
+/** Term watcher tick */
+export function termWatcherTick(id: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-watcher-tick", args: { id: id } };
+}
+
+/** Term watcher delete */
+export function termWatcherDelete(id: string): { action: string; args: Record<string, unknown> } {
+  return { action: "term-watcher-delete", args: { id: id } };
+}
+
 /** Pane session new */
 export function paneSessionNew(namePanesessionid: string): { action: string; args: Record<string, unknown> } {
   return { action: "pane-session-new", args: { name_panesessionid: namePanesessionid } };
@@ -1372,6 +1538,56 @@ export function browserSnapshotGet(id: string): { action: string; args: Record<s
 /** Browser set dom */
 export function browserSetDom(id: string, dom: string): { action: string; args: Record<string, unknown> } {
   return { action: "browser-set-dom", args: { id: id, dom: dom } };
+}
+
+/** File list */
+export function fileList(path?: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-list", args: { path: path } };
+}
+
+/** File preview */
+export function filePreview(path?: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-preview", args: { path: path } };
+}
+
+/** File copy */
+export function fileCopy(src: string, dst: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-copy", args: { src: src, dst: dst } };
+}
+
+/** File move */
+export function fileMove(src: string, dst: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-move", args: { src: src, dst: dst } };
+}
+
+/** File rename */
+export function fileRename(path?: string, name?: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-rename", args: { path: path, name: name } };
+}
+
+/** File create */
+export function fileCreate(kind: string, dir: string, path?: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-create", args: { kind: kind, dir: dir, path: path } };
+}
+
+/** File trash */
+export function fileTrash(path?: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-trash", args: { path: path } };
+}
+
+/** File search */
+export function fileSearch(root: string, query: string): { action: string; args: Record<string, unknown> } {
+  return { action: "file-search", args: { root: root, query: query } };
+}
+
+/** File bookmark list */
+export function fileBookmarkList(): { action: string; args: Record<string, unknown> } {
+  return { action: "file-bookmark-list", args: {  } };
+}
+
+/** File bookmark go */
+export function fileBookmarkGo(index?: number): { action: string; args: Record<string, unknown> } {
+  return { action: "file-bookmark-go", args: { index: index } };
 }
 
 /** Theme select */

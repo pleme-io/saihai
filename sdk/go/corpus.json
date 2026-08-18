@@ -982,6 +982,18 @@
       "observed": 1
     },
     {
+      "id": "action-chain",
+      "gloss": "Action chain",
+      "category": "Input",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l3",
+      "params": [
+        { "name": "steps", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
       "id": "input-inject-key",
       "gloss": "Input inject key",
       "category": "Input",
@@ -2363,6 +2375,307 @@
       "observed": 1
     },
     {
+      "id": "term-spawn",
+      "gloss": "Term spawn",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "argv", "kind": "str", "required": true },
+        { "name": "cwd", "kind": "str", "required": true },
+        { "name": "profile_sessionid", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-close",
+      "gloss": "Term close",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-switch",
+      "gloss": "Term switch",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-resize",
+      "gloss": "Term resize",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "cols", "kind": "str", "required": true },
+        { "name": "rows", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-list",
+      "gloss": "Term list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "term-get-output",
+      "gloss": "Term get output",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "lines", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-snapshot-grid",
+      "gloss": "Term snapshot grid",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "session", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-send-keys",
+      "gloss": "Term send keys",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "keys", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "term-simulate-chord",
+      "gloss": "Term simulate chord",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "chord", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "term-mark-list",
+      "gloss": "Term mark list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "kind", "kind": "str", "required": true },
+        { "name": "user", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-mark-clear",
+      "gloss": "Term mark clear",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "kind", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-mark-jump",
+      "gloss": "Term mark jump",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "kind", "kind": "str", "required": true },
+        { "name": "index", "kind": "int", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-recent-dirs-list",
+      "gloss": "Term recent dirs list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "term-jump-to-recent-dir",
+      "gloss": "Term jump to recent dir",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "index", "kind": "int", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-suggest-list",
+      "gloss": "Term suggest list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "term-suggest-inject",
+      "gloss": "Term suggest inject",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "blind",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 0
+    },
+    {
+      "id": "term-suggest-dismiss",
+      "gloss": "Term suggest dismiss",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-attention-get",
+      "gloss": "Term attention get",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "term-attention-set",
+      "gloss": "Term attention set",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "session", "kind": "str", "required": true },
+        { "name": "on", "kind": "bool", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-frame-perf",
+      "gloss": "Term frame perf",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "term-watcher-register",
+      "gloss": "Term watcher register",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "spec", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-watcher-list",
+      "gloss": "Term watcher list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "term-watcher-inspect",
+      "gloss": "Term watcher inspect",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-watcher-tick",
+      "gloss": "Term watcher tick",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "term-watcher-delete",
+      "gloss": "Term watcher delete",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "id", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
       "id": "pane-session-new",
       "gloss": "Pane session new",
       "category": "Window",
@@ -2778,6 +3091,130 @@
       "observed": 0
     },
     {
+      "id": "file-list",
+      "gloss": "File list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-preview",
+      "gloss": "File preview",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-copy",
+      "gloss": "File copy",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "src", "kind": "str", "required": true },
+        { "name": "dst", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-move",
+      "gloss": "File move",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "src", "kind": "str", "required": true },
+        { "name": "dst", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-rename",
+      "gloss": "File rename",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "path", "kind": "str", "required": false },
+        { "name": "name", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-create",
+      "gloss": "File create",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "kind", "kind": "str", "required": true },
+        { "name": "dir", "kind": "str", "required": true },
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-trash",
+      "gloss": "File trash",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l3",
+      "params": [
+        { "name": "path", "kind": "str", "required": false }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-search",
+      "gloss": "File search",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [
+        { "name": "root", "kind": "str", "required": true },
+        { "name": "query", "kind": "str", "required": true }
+      ],
+      "observed": 1
+    },
+    {
+      "id": "file-bookmark-list",
+      "gloss": "File bookmark list",
+      "category": "Launch",
+      "kind": "observe",
+      "class": "read",
+      "auth": "l0",
+      "params": [],
+      "observed": 1
+    },
+    {
+      "id": "file-bookmark-go",
+      "gloss": "File bookmark go",
+      "category": "Launch",
+      "kind": "mutate",
+      "class": "converging",
+      "auth": "l1",
+      "params": [
+        { "name": "index", "kind": "int", "required": false }
+      ],
+      "observed": 1
+    },
+    {
       "id": "theme-select",
       "gloss": "Theme select",
       "category": "Theme",
@@ -3090,5 +3527,5 @@
       "observed": 1
     }
   ],
-  "count": 248
+  "count": 284
 }
