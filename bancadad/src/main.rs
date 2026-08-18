@@ -44,8 +44,8 @@ use std::time::Duration;
 use indexmap::IndexMap;
 use lava_viggy::{TickPhase, TickReport};
 use saihai_forge::reconcile::{Desired, Gap, Plan};
-use saihai_spec::{bancada::Bancada, Catalog, Rung};
-use viggy::{address, engine, BancadaController};
+use saihai_spec::{Catalog, Rung, bancada::Bancada};
+use viggy::{BancadaController, address, engine};
 use world::MockWorld;
 
 const CATALOG: &str = include_str!("../../catalog/desktop.saihai.lisp");
@@ -95,7 +95,11 @@ fn render(r: &TickReport, p: Option<&Plan>) -> String {
                 );
             }
             Gap::Blind { key, action } => {
-                let _ = writeln!(s, "  GAP  {key} is set by {} which is blind", action.as_str());
+                let _ = writeln!(
+                    s,
+                    "  GAP  {key} is set by {} which is blind",
+                    action.as_str()
+                );
             }
         }
     }
@@ -107,7 +111,8 @@ fn load(decl: &Path) -> Result<(Catalog, Bancada, String), String> {
     cat.validate().map_err(|e| format!("catalog: {e}"))?;
     let src = std::fs::read_to_string(decl).map_err(|e| format!("{}: {e}", decl.display()))?;
     let b = Bancada::from_source(&src).map_err(|e| format!("{}: {e}", decl.display()))?;
-    b.validate().map_err(|e| format!("{}: {e}", decl.display()))?;
+    b.validate()
+        .map_err(|e| format!("{}: {e}", decl.display()))?;
     Ok((cat, b, src))
 }
 
@@ -179,7 +184,10 @@ fn main() -> ExitCode {
                     println!("converged after one tick");
                     Ok(ExitCode::SUCCESS)
                 } else {
-                    println!("NOT converged after one tick — {}", after.final_phase.as_str());
+                    println!(
+                        "NOT converged after one tick — {}",
+                        after.final_phase.as_str()
+                    );
                     Ok(ExitCode::FAILURE)
                 }
             }

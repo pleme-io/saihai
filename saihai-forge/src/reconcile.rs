@@ -291,7 +291,11 @@ mod tests {
         let c = cat();
         let r = routes(&c);
         assert!(!r.is_empty());
-        assert!(r.contains_key("theme.name"), "keys: {:?}", r.keys().collect::<Vec<_>>());
+        assert!(
+            r.contains_key("theme.name"),
+            "keys: {:?}",
+            r.keys().collect::<Vec<_>>()
+        );
         // Only convergeable actions route — a blind action must never be
         // reachable as a way to close a gap.
         for spec in r.values() {
@@ -379,7 +383,10 @@ mod tests {
         assert!(matches!(p.gaps.first(), Some(Gap::NoAction { .. })));
         // Examined, so this is NOT vacuous — it looked and found no route.
         assert_eq!(p.examined, 1);
-        assert!(p.is_converged(), "a standing gap does not block convergence");
+        assert!(
+            p.is_converged(),
+            "a standing gap does not block convergence"
+        );
     }
 
     /// ★ A blind action can never be routed, so it can never be counted toward
@@ -387,8 +394,15 @@ mod tests {
     #[test]
     fn blind_actions_are_not_routable() {
         let c = cat();
-        let blind: Vec<_> = c.by_class(Class::Blind).iter().map(|a| a.id.clone()).collect();
-        assert!(!blind.is_empty(), "the catalog must exercise the blind case");
+        let blind: Vec<_> = c
+            .by_class(Class::Blind)
+            .iter()
+            .map(|a| a.id.clone())
+            .collect();
+        assert!(
+            !blind.is_empty(),
+            "the catalog must exercise the blind case"
+        );
         let routed: Vec<_> = routes(&c).values().map(|a| a.id.clone()).collect();
         for b in blind {
             assert!(!routed.contains(&b), "{} is blind but routable", b.as_str());

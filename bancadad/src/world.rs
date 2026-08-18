@@ -9,7 +9,7 @@
 //! world has to sit behind the controller's interior mutability rather than be
 //! passed down the daemon's call stack.
 
-use saihai_forge::reconcile::{apply, Observed, Plan};
+use saihai_forge::reconcile::{Observed, Plan, apply};
 use std::collections::BTreeMap;
 
 /// A desktop that can be read and written.

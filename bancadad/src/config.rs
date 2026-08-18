@@ -195,8 +195,14 @@ mod tests {
             apply: true,
         };
         let merged = node.extend(&base);
-        assert_eq!(merged.declaration, base.declaration, "declaration inherited");
-        assert_eq!(merged.interval_secs, base.interval_secs, "interval inherited");
+        assert_eq!(
+            merged.declaration, base.declaration,
+            "declaration inherited"
+        );
+        assert_eq!(
+            merged.interval_secs, base.interval_secs,
+            "interval inherited"
+        );
         assert_eq!(merged.rung, ConfiguredRung::L2, "the node's own rung wins");
     }
 

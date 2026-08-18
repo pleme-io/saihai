@@ -2,4 +2,12 @@
 import pathlib
 import sys
 
+# This whole directory is generated and committed, so bytecode
+# written beside it is a build artifact OF a build artifact. It
+# was swept into a commit once. Suppressing it here fixes that at
+# the cause rather than adding a Python line to the fleet-wide
+# Rust gitignore template, which 148 repos with no Python would
+# then carry.
+sys.dont_write_bytecode = True
+
 sys.path.insert(0, str(pathlib.Path(__file__).parent))

@@ -57,7 +57,7 @@ use lava_anomaly::{PolicyRouter, RemediationAction, RemediationPolicy, RoutingDe
 use lava_drift::{DriftReport, DriftedField, Severity};
 use lava_outcome_chain::{ContentHash, ResourceAddress};
 use lava_viggy::{PromessaController, TickPhase, TickReport, ViggyEngine, ViggyError};
-use saihai_forge::reconcile::{plan, Desired, Gap, Plan};
+use saihai_forge::reconcile::{Desired, Gap, Plan, plan};
 use saihai_spec::{Catalog, Rung};
 use std::cell::RefCell;
 
@@ -136,7 +136,11 @@ impl BancadaController {
     /// The severity of a plan, by what its gaps MEAN.
     #[must_use]
     pub fn severity_of(plan: &Plan) -> Option<Severity> {
-        if plan.gaps.iter().any(|g| matches!(g, Gap::Unauthorized { .. })) {
+        if plan
+            .gaps
+            .iter()
+            .any(|g| matches!(g, Gap::Unauthorized { .. }))
+        {
             // The declaration cannot be honoured. Ticking will not help, and a
             // loop reporting this as ordinary drift would look healthy forever
             // while never converging.
@@ -188,9 +192,7 @@ impl PromessaController for BancadaController {
         // declaration went unhonoured.
         for g in &ctx.plan.gaps {
             let (address, key, sev) = match g {
-                Gap::Unauthorized { key, action, .. } => {
-                    (action.as_str(), key, Severity::Critical)
-                }
+                Gap::Unauthorized { key, action, .. } => (action.as_str(), key, Severity::Critical),
                 Gap::Blind { key, action } => (action.as_str(), key, Severity::Cosmetic),
                 // Nothing in the catalog sets this key at all — a declaration
                 // that can never be honoured, which is as critical as lacking
@@ -276,7 +278,10 @@ impl PromessaController for BancadaController {
                 TickPhase::HoldingForApproval,
                 Some(format!("{n} call(s) applied; {why}")),
             ),
-            None => (TickPhase::Reconverging, Some(format!("{n} call(s) applied"))),
+            None => (
+                TickPhase::Reconverging,
+                Some(format!("{n} call(s) applied")),
+            ),
         })
     }
 

@@ -34,7 +34,7 @@ pub mod bancada;
 use serde::Deserialize;
 use tatara_lisp::{DeriveKeywordSexp, DeriveTataraDomain, TataraDomain};
 
-pub use hashigo::{AtLeast, Rung, RungWitness, Warrant, L0, L1, L2, L3};
+pub use hashigo::{AtLeast, L0, L1, L2, L3, Rung, RungWitness, Warrant};
 
 // ── Newtypes ───────────────────────────────────────────────────────────────
 //
@@ -86,7 +86,8 @@ impl TryFrom<String> for ActionId {
             && s.starts_with(|c: char| c.is_ascii_lowercase())
             && !s.ends_with('-')
             && !s.contains("--")
-            && s.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-');
+            && s.chars()
+                .all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-');
         if ok {
             Ok(Self(s))
         } else {
@@ -129,23 +130,107 @@ impl Ident {
 /// emitting code that fails to compile in one language only.
 const RESERVED: &[&str] = &[
     // ── Rust ──
-    "as", "async", "await", "break", "const", "continue", "crate", "dyn", "else",
-    "enum", "extern", "false", "fn", "for", "if", "impl", "in", "let", "loop",
-    "match", "mod", "move", "mut", "pub", "ref", "return", "self", "static",
-    "struct", "super", "trait", "true", "type", "unsafe", "use", "where", "while",
+    "as",
+    "async",
+    "await",
+    "break",
+    "const",
+    "continue",
+    "crate",
+    "dyn",
+    "else",
+    "enum",
+    "extern",
+    "false",
+    "fn",
+    "for",
+    "if",
+    "impl",
+    "in",
+    "let",
+    "loop",
+    "match",
+    "mod",
+    "move",
+    "mut",
+    "pub",
+    "ref",
+    "return",
+    "self",
+    "static",
+    "struct",
+    "super",
+    "trait",
+    "true",
+    "type",
+    "unsafe",
+    "use",
+    "where",
+    "while",
     // ── Python ── (`with` was MISSING and produced invalid generated Python:
     // `def launch_open_path(with: str)`. Found by RUNNING the emitted module,
     // which a syntax-blind conformance check would never have caught.)
-    "and", "assert", "class", "def", "del", "elif", "except", "finally", "from",
-    "global", "import", "is", "lambda", "nonlocal", "not", "or", "pass", "raise",
-    "try", "with", "yield", "None", "True", "False",
+    "and",
+    "assert",
+    "class",
+    "def",
+    "del",
+    "elif",
+    "except",
+    "finally",
+    "from",
+    "global",
+    "import",
+    "is",
+    "lambda",
+    "nonlocal",
+    "not",
+    "or",
+    "pass",
+    "raise",
+    "try",
+    "with",
+    "yield",
+    "None",
+    "True",
+    "False",
     // ── Go ──
-    "chan", "defer", "fallthrough", "func", "go", "goto", "interface", "map",
-    "package", "range", "select", "switch", "case", "default", "var",
+    "chan",
+    "defer",
+    "fallthrough",
+    "func",
+    "go",
+    "goto",
+    "interface",
+    "map",
+    "package",
+    "range",
+    "select",
+    "switch",
+    "case",
+    "default",
+    "var",
     // ── TypeScript / JavaScript ──
-    "catch", "debugger", "delete", "do", "export", "extends", "finally",
-    "function", "implements", "instanceof", "new", "null", "private",
-    "protected", "public", "this", "throw", "typeof", "undefined", "void",
+    "catch",
+    "debugger",
+    "delete",
+    "do",
+    "export",
+    "extends",
+    "finally",
+    "function",
+    "implements",
+    "instanceof",
+    "new",
+    "null",
+    "private",
+    "protected",
+    "public",
+    "this",
+    "throw",
+    "typeof",
+    "undefined",
+    "void",
 ];
 
 impl TryFrom<String> for Ident {
@@ -155,7 +240,8 @@ impl TryFrom<String> for Ident {
             && s.starts_with(|c: char| c.is_ascii_lowercase())
             && !s.ends_with('_')
             && !s.contains("__")
-            && s.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '_');
+            && s.chars()
+                .all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '_');
         if !shape {
             return Err(format!(
                 "identifier must be lowercase snake_case, got {s:?}"
@@ -327,11 +413,15 @@ impl ActionSpec {
 pub enum SpecError {
     #[error("duplicate action id `{0}`")]
     DuplicateId(String),
-    #[error("`{0}` is an observe action but names no observed state; a read that reads nothing is a typo, not a blind read")]
+    #[error(
+        "`{0}` is an observe action but names no observed state; a read that reads nothing is a typo, not a blind read"
+    )]
     ReaderObservesNothing(String),
     #[error("`{0}` is an observe action at rung {1:?}; a read must not require break-glass")]
     ReaderNeedsBreakGlass(String, Rung),
-    #[error("`{0}` has a required parameter after an optional one, which several target languages cannot express")]
+    #[error(
+        "`{0}` has a required parameter after an optional one, which several target languages cannot express"
+    )]
     RequiredAfterOptional(String),
 }
 
@@ -465,14 +555,24 @@ mod tests {
             );
         }
         for r in [Rung::L0, Rung::L1, Rung::L2] {
-            assert!(c.actions.iter().any(|a| a.rung() == r), "no action at {r:?}");
+            assert!(
+                c.actions.iter().any(|a| a.rung() == r),
+                "no action at {r:?}"
+            );
         }
     }
 
     #[test]
     fn a_malformed_action_id_is_rejected_at_the_border() {
         assert!(ActionId::try_from("window-focus".to_string()).is_ok());
-        for bad in ["Window-Focus", "window_focus", "-lead", "trail-", "double--dash", ""] {
+        for bad in [
+            "Window-Focus",
+            "window_focus",
+            "-lead",
+            "trail-",
+            "double--dash",
+            "",
+        ] {
             assert!(
                 ActionId::try_from(bad.to_string()).is_err(),
                 "{bad:?} should be rejected"

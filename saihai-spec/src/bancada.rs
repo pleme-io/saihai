@@ -140,14 +140,12 @@ impl Bancada {
                 return Err(BancadaError::DuplicateOutput(o.name.clone()));
             }
             if let Some(m) = &o.mode {
-                let ok = m
-                    .split_once('x')
-                    .is_some_and(|(w, h)| {
-                        !w.is_empty()
-                            && !h.is_empty()
-                            && w.chars().all(|c| c.is_ascii_digit())
-                            && h.chars().all(|c| c.is_ascii_digit())
-                    });
+                let ok = m.split_once('x').is_some_and(|(w, h)| {
+                    !w.is_empty()
+                        && !h.is_empty()
+                        && w.chars().all(|c| c.is_ascii_digit())
+                        && h.chars().all(|c| c.is_ascii_digit())
+                });
                 if !ok {
                     return Err(BancadaError::BadMode(o.name.clone(), m.clone()));
                 }
@@ -225,7 +223,10 @@ impl Bancada {
         }
         for b in &self.bindings {
             let scope = b.mode.clone().unwrap_or_else(|| "default".into());
-            m.insert(format!("inputs.bindings.{scope}.{}", b.chord), b.action.clone());
+            m.insert(
+                format!("inputs.bindings.{scope}.{}", b.chord),
+                b.action.clone(),
+            );
         }
         m
     }
@@ -275,7 +276,11 @@ mod tests {
             // that would stop it matching what the compositor reports, which
             // is the whole point of scoping per-output keys by name.
             let domain = k.split('.').next().unwrap();
-            assert_eq!(domain.to_lowercase(), domain, "domain {domain} must be lowercase");
+            assert_eq!(
+                domain.to_lowercase(),
+                domain,
+                "domain {domain} must be lowercase"
+            );
         }
     }
 
@@ -286,8 +291,14 @@ mod tests {
           :outputs ((defwantoutput :name "DP-1" :mode "2560x1440")
                     (defwantoutput :name "HDMI-1" :mode "1920x1080")))"#;
         let m = Bancada::from_source(src).unwrap().lower();
-        assert_eq!(m.get("outputs.mode.DP-1").map(String::as_str), Some("2560x1440"));
-        assert_eq!(m.get("outputs.mode.HDMI-1").map(String::as_str), Some("1920x1080"));
+        assert_eq!(
+            m.get("outputs.mode.DP-1").map(String::as_str),
+            Some("2560x1440")
+        );
+        assert_eq!(
+            m.get("outputs.mode.HDMI-1").map(String::as_str),
+            Some("1920x1080")
+        );
     }
 
     #[test]
@@ -324,7 +335,10 @@ mod tests {
         // what rejects it. Pinned so the tier is not later described as
         // unrepresentability.
         let b = Bancada::from_source(src).expect("an out-of-range rate still parses");
-        assert!(matches!(b.validate(), Err(BancadaError::BadRepeatRate(99999))));
+        assert!(matches!(
+            b.validate(),
+            Err(BancadaError::BadRepeatRate(99999))
+        ));
     }
 
     /// ★ There is no syntax for a blind action. The declarative surface admits

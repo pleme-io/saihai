@@ -157,7 +157,11 @@ mod tests {
         let mut checked = 0;
         for have in Rung::ALL {
             for need in Rung::ALL {
-                assert_eq!(have.permits(need), expect(have, need), "{have:?} vs {need:?}");
+                assert_eq!(
+                    have.permits(need),
+                    expect(have, need),
+                    "{have:?} vs {need:?}"
+                );
                 checked += 1;
             }
         }

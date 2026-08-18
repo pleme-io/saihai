@@ -7,14 +7,15 @@
 use std::path::{Path, PathBuf};
 use std::process::ExitCode;
 
-use saihai_forge::{matrix, Coverage};
+use saihai_forge::{Coverage, matrix};
 use saihai_spec::Catalog;
 
 const CATALOG: &str = include_str!("../../catalog/desktop.saihai.lisp");
 
 fn load() -> Result<Catalog, String> {
     let c = Catalog::from_source(CATALOG).map_err(|e| format!("catalog failed to compile: {e}"))?;
-    c.validate().map_err(|e| format!("catalog failed to validate: {e}"))?;
+    c.validate()
+        .map_err(|e| format!("catalog failed to validate: {e}"))?;
     Ok(c)
 }
 
@@ -67,7 +68,10 @@ fn main() -> ExitCode {
                                 .lines()
                                 .zip(want.lines())
                                 .position(|(a, b)| a != b)
-                                .map_or_else(|| "length".to_string(), |i| format!("line {}", i + 1));
+                                .map_or_else(
+                                    || "length".to_string(),
+                                    |i| format!("line {}", i + 1),
+                                );
                             eprintln!("DRIFT    {} (first difference at {at})", path.display());
                             drift += 1;
                         }
