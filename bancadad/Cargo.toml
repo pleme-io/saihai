@@ -13,3 +13,14 @@ saihai-forge = { path = "../saihai-forge", version = "0.1.0" }
 shikumi = { path = "../../shikumi", version = "0.1" }
 serde = { workspace = true }
 serde_json = "1"
+
+# ── lava's convergence engine ─────────────────────────────────────────
+# bancada does not run its own loop. lava-viggy is the fleet's published
+# seven-beat engine, and two convergence engines in one fleet is exactly the
+# duplication this substrate exists to remove.
+lava-viggy = "0.1"
+lava-drift = "0.1"
+lava-outcome-chain = "0.1"
+lava-anomaly = "0.1"
+indexmap = "2"
+chrono = { version = "0.4", features = ["serde"] }
