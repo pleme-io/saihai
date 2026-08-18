@@ -1941,7 +1941,7 @@
       "class": "blind",
       "auth": "l0",
       "params": [
-        { "name": "with", "kind": "str", "required": true },
+        { "name": "using", "kind": "str", "required": true },
         { "name": "path", "kind": "str", "required": false }
       ],
       "observed": 0

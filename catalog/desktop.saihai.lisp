@@ -52,7 +52,7 @@
   :category :window :kind :mutate :auth :l2
   :params ((defparam :name "target" :kind :selector :required #t)
            (defparam :name "position" :kind :str :required #t))
-  :observed ((defobserved :domain :windows :field "move")))
+  :observed ((defobserved :domain :windows :field "relocate")))
 
 (defaction :id "window-move-direction" :gloss "Window move direction"
   :category :window :kind :mutate :auth :l1
@@ -932,7 +932,7 @@
 
 (defaction :id "launch-open-path" :gloss "Launch open path"
   :category :launch :kind :mutate :auth :l0
-  :params ((defparam :name "with" :kind :str :required #t)
+  :params ((defparam :name "using" :kind :str :required #t)
            (defparam :name "path" :kind :str :required #f))
   :observed ())
 
@@ -1195,7 +1195,7 @@
   :category :window :kind :mutate :auth :l1
   :params ((defparam :name "pane" :kind :str :required #t)
            (defparam :name "path" :kind :str :required #f))
-  :observed ((defobserved :domain :windows :field "export")))
+  :observed ((defobserved :domain :windows :field "expose")))
 
 (defaction :id "pane-record-status" :gloss "Pane record status"
   :category :window :kind :observe :auth :l0
@@ -1282,7 +1282,7 @@
   :category :launch :kind :mutate :auth :l1
   :params ((defparam :name "id" :kind :str :required #t)
            (defparam :name "position" :kind :str :required #t))
-  :observed ((defobserved :domain :windows :field "move")))
+  :observed ((defobserved :domain :windows :field "relocate")))
 
 (defaction :id "browser-resize" :gloss "Browser resize"
   :category :launch :kind :mutate :auth :l1

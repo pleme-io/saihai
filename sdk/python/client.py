@@ -155,7 +155,7 @@ ACTIONS = {
     "launch-activate": {"id": "launch-activate", "cls": "blind", "auth": "l0", "params": [{"name": "app_id", "kind": "str", "required": True}, {"name": "token", "kind": "str", "required": True}]},
     "launch-desktop-entry": {"id": "launch-desktop-entry", "cls": "converging", "auth": "l0", "params": [{"name": "entry", "kind": "str", "required": True}, {"name": "action", "kind": "str", "required": True}, {"name": "args", "kind": "str", "required": True}]},
     "launch-open-url": {"id": "launch-open-url", "cls": "blind", "auth": "l0", "params": [{"name": "url", "kind": "str", "required": True}]},
-    "launch-open-path": {"id": "launch-open-path", "cls": "blind", "auth": "l0", "params": [{"name": "with", "kind": "str", "required": True}, {"name": "path", "kind": "str", "required": False}]},
+    "launch-open-path": {"id": "launch-open-path", "cls": "blind", "auth": "l0", "params": [{"name": "using", "kind": "str", "required": True}, {"name": "path", "kind": "str", "required": False}]},
     "launch-focus-or-spawn": {"id": "launch-focus-or-spawn", "cls": "converging", "auth": "l1", "params": [{"name": "criteria", "kind": "selector", "required": True}, {"name": "argv", "kind": "str", "required": True}, {"name": "timeout_ms", "kind": "str", "required": True}]},
     "launcher-toggle": {"id": "launcher-toggle", "cls": "converging", "auth": "l0", "params": []},
     "launcher-show": {"id": "launcher-show", "cls": "converging", "auth": "l0", "params": []},
@@ -861,9 +861,9 @@ def launch_open_url(url: str):
     """Launch open url"""
     return {"action": "launch-open-url", "args": {"url": url}}
 
-def launch_open_path(with: str, path: str | None = None):
+def launch_open_path(using: str, path: str | None = None):
     """Launch open path"""
-    return {"action": "launch-open-path", "args": {"with": with, "path": path}}
+    return {"action": "launch-open-path", "args": {"using": using, "path": path}}
 
 def launch_focus_or_spawn(criteria: str, argv: str, timeout_ms: str):
     """Launch focus or spawn"""

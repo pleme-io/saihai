@@ -166,7 +166,7 @@ export const ACTIONS: Record<string, ActionMeta> = {
   "launch-activate": { id: "launch-activate", cls: "blind", auth: "l0", params: [{ name: "app_id", kind: "str", required: true }, { name: "token", kind: "str", required: true }] },
   "launch-desktop-entry": { id: "launch-desktop-entry", cls: "converging", auth: "l0", params: [{ name: "entry", kind: "str", required: true }, { name: "action", kind: "str", required: true }, { name: "args", kind: "str", required: true }] },
   "launch-open-url": { id: "launch-open-url", cls: "blind", auth: "l0", params: [{ name: "url", kind: "str", required: true }] },
-  "launch-open-path": { id: "launch-open-path", cls: "blind", auth: "l0", params: [{ name: "with", kind: "str", required: true }, { name: "path", kind: "str", required: false }] },
+  "launch-open-path": { id: "launch-open-path", cls: "blind", auth: "l0", params: [{ name: "using", kind: "str", required: true }, { name: "path", kind: "str", required: false }] },
   "launch-focus-or-spawn": { id: "launch-focus-or-spawn", cls: "converging", auth: "l1", params: [{ name: "criteria", kind: "selector", required: true }, { name: "argv", kind: "str", required: true }, { name: "timeout_ms", kind: "str", required: true }] },
   "launcher-toggle": { id: "launcher-toggle", cls: "converging", auth: "l0", params: [] },
   "launcher-show": { id: "launcher-show", cls: "converging", auth: "l0", params: [] },
@@ -1025,8 +1025,8 @@ export function launchOpenUrl(url: string): { action: string; args: Record<strin
 }
 
 /** Launch open path */
-export function launchOpenPath(with: string, path?: string): { action: string; args: Record<string, unknown> } {
-  return { action: "launch-open-path", args: { with: with, path: path } };
+export function launchOpenPath(using: string, path?: string): { action: string; args: Record<string, unknown> } {
+  return { action: "launch-open-path", args: { using: using, path: path } };
 }
 
 /** Launch focus or spawn */

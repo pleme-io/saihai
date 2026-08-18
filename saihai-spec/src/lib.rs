@@ -128,10 +128,24 @@ impl Ident {
 /// so a catalog row naming `class` or `func` fails to parse rather than
 /// emitting code that fails to compile in one language only.
 const RESERVED: &[&str] = &[
-    "type", "class", "func", "def", "return", "import", "from", "in", "is", "as", "if", "else",
-    "for", "while", "match", "impl", "trait", "struct", "enum", "fn", "let", "mut", "const",
-    "range", "map", "chan", "go", "defer", "package", "interface", "select", "var", "lambda",
-    "pass", "None", "True", "False", "async", "await", "yield", "self", "super", "new", "delete",
+    // ── Rust ──
+    "as", "async", "await", "break", "const", "continue", "crate", "dyn", "else",
+    "enum", "extern", "false", "fn", "for", "if", "impl", "in", "let", "loop",
+    "match", "mod", "move", "mut", "pub", "ref", "return", "self", "static",
+    "struct", "super", "trait", "true", "type", "unsafe", "use", "where", "while",
+    // ── Python ── (`with` was MISSING and produced invalid generated Python:
+    // `def launch_open_path(with: str)`. Found by RUNNING the emitted module,
+    // which a syntax-blind conformance check would never have caught.)
+    "and", "assert", "class", "def", "del", "elif", "except", "finally", "from",
+    "global", "import", "is", "lambda", "nonlocal", "not", "or", "pass", "raise",
+    "try", "with", "yield", "None", "True", "False",
+    // ── Go ──
+    "chan", "defer", "fallthrough", "func", "go", "goto", "interface", "map",
+    "package", "range", "select", "switch", "case", "default", "var",
+    // ── TypeScript / JavaScript ──
+    "catch", "debugger", "delete", "do", "export", "extends", "finally",
+    "function", "implements", "instanceof", "new", "null", "private",
+    "protected", "public", "this", "throw", "typeof", "undefined", "void",
 ];
 
 impl TryFrom<String> for Ident {

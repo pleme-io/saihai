@@ -170,7 +170,7 @@ var Actions = map[string]ActionMeta{
 	"launch-activate": {ID: "launch-activate", Class: "blind", Auth: "l0", Params: []Param{{Name: "app_id", Kind: "str", Required: true}, {Name: "token", Kind: "str", Required: true}, }},
 	"launch-desktop-entry": {ID: "launch-desktop-entry", Class: "converging", Auth: "l0", Params: []Param{{Name: "entry", Kind: "str", Required: true}, {Name: "action", Kind: "str", Required: true}, {Name: "args", Kind: "str", Required: true}, }},
 	"launch-open-url": {ID: "launch-open-url", Class: "blind", Auth: "l0", Params: []Param{{Name: "url", Kind: "str", Required: true}, }},
-	"launch-open-path": {ID: "launch-open-path", Class: "blind", Auth: "l0", Params: []Param{{Name: "with", Kind: "str", Required: true}, {Name: "path", Kind: "str", Required: false}, }},
+	"launch-open-path": {ID: "launch-open-path", Class: "blind", Auth: "l0", Params: []Param{{Name: "using", Kind: "str", Required: true}, {Name: "path", Kind: "str", Required: false}, }},
 	"launch-focus-or-spawn": {ID: "launch-focus-or-spawn", Class: "converging", Auth: "l1", Params: []Param{{Name: "criteria", Kind: "selector", Required: true}, {Name: "argv", Kind: "str", Required: true}, {Name: "timeout_ms", Kind: "str", Required: true}, }},
 	"launcher-toggle": {ID: "launcher-toggle", Class: "converging", Auth: "l0", Params: []Param{}},
 	"launcher-show": {ID: "launcher-show", Class: "converging", Auth: "l0", Params: []Param{}},
@@ -1459,9 +1459,9 @@ func LaunchOpenUrl(url string) Call {
 }
 
 // LaunchOpenPath — Launch open path
-func LaunchOpenPath(with string, path string) Call {
+func LaunchOpenPath(using string, path string) Call {
 	return Call{Action: "launch-open-path", Args: map[string]any{
-		"with": with,
+		"using": using,
 		"path": path,
 	}}
 }
