@@ -896,6 +896,8 @@ dependencies = [
 [[package]]
 name = "shikumi"
 version = "0.1.594"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b06dc450be58323205ca52eebf05bc96d712811470618a8c8129fc23a0f06f03"
 dependencies = [
  "arc-swap",
  "async-trait",

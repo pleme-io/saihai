@@ -10,7 +10,9 @@ rust-version.workspace = true
 [dependencies]
 saihai-spec = { path = "../saihai-spec", version = "0.1.0" }
 saihai-forge = { path = "../saihai-forge", version = "0.1.0" }
-shikumi = { path = "../../shikumi", version = "0.1" }
+# From the registry, not a path: shikumi lives in its own repo, so a path dep
+# resolves on this workstation and nowhere else. 0.1.594 is published.
+shikumi = "0.1"
 serde = { workspace = true }
 serde_json = "1"
 
