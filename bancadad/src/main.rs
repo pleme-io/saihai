@@ -22,6 +22,11 @@
 //! It also never mints a [`saihai_spec::Warrant`]. Break-glass actions are not
 //! reachable from a loop, by construction: the constructor is not linked here.
 
+mod config;
+
+use config::{BancadaConfig, ConfiguredRung};
+use shikumi::TieredConfig;
+
 use std::collections::BTreeMap;
 use std::path::Path;
 use std::process::ExitCode;
@@ -138,19 +143,32 @@ fn tick(cat: &Catalog, want: &Desired, world: &mut dyn World, rung: Rung, do_app
 fn main() -> ExitCode {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let mode = args.first().map(String::as_str).unwrap_or("help");
-    let decl = args.get(1).map_or("bancada/plo.bancada.lisp", String::as_str);
-    // The rung the loop HOLDS. Defaults to L1 — seat-owner — because that is
-    // what an unprivileged desktop session actually has, and defaulting higher
-    // would let a misconfiguration silently plan work it cannot do.
-    let rung = match args.get(2).map(String::as_str) {
-        Some("l0") => Rung::L0,
-        Some("l2") => Rung::L2,
-        Some("l3") => Rung::L3,
-        _ => Rung::L1,
+
+    // ── Configuration resolves through shikumi's tiers ────────────────────
+    // Not ad-hoc argument parsing: the prescribed tier is the fleet desktop,
+    // `discovered()` may raise the rung only on real evidence that the process
+    // is seated, and `bare()` is a floor that cannot act. Command-line
+    // arguments are the LAST overlay, expressed as an `extend` over that base,
+    // so a flag never silently reintroduces authority the tiers withheld.
+    let base = BancadaConfig::prescribed_default();
+    let overlay = BancadaConfig {
+        declaration: args.get(1).cloned().unwrap_or_default(),
+        interval_secs: 0,
+        rung: match args.get(2).map(String::as_str) {
+            Some("l0") => ConfiguredRung::L0,
+            Some("l2") => ConfiguredRung::L2,
+            Some("l3") => ConfiguredRung::L3,
+            Some("l1") => ConfiguredRung::L1,
+            _ => base.rung,
+        },
+        apply: base.apply,
     };
+    let cfg = overlay.extend(&base);
+    let decl = cfg.declaration.clone();
+    let rung: Rung = cfg.rung.to_rung();
 
     let run = || -> Result<ExitCode, String> {
-        let (cat, b) = load(Path::new(decl))?;
+        let (cat, b) = load(Path::new(&decl))?;
         let want = Desired { state: b.lower() };
         let mut world = MockWorld::default();
 
@@ -183,9 +201,10 @@ fn main() -> ExitCode {
             }
             "run" => {
                 println!(
-                    "bancadad: holding {} at its declaration, world = {}, rung = {rung:?}",
+                    "bancadad: holding {} at its declaration, world = {}, rung = {rung:?}, tick {}s",
                     b.node.as_str(),
-                    world.describe()
+                    world.describe(),
+                    cfg.interval_secs
                 );
                 let mut ticks = 0u64;
                 loop {
@@ -197,7 +216,7 @@ fn main() -> ExitCode {
                     if !p.calls.is_empty() || !p.gaps.is_empty() {
                         print!("[tick {ticks}] {}", render(&p));
                     }
-                    std::thread::sleep(Duration::from_secs(5));
+                    std::thread::sleep(Duration::from_secs(cfg.interval_secs));
                 }
             }
             _ => {

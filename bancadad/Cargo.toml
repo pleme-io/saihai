@@ -10,3 +10,6 @@ rust-version.workspace = true
 [dependencies]
 saihai-spec = { path = "../saihai-spec", version = "0.1.0" }
 saihai-forge = { path = "../saihai-forge", version = "0.1.0" }
+shikumi = { path = "../../shikumi", version = "0.1" }
+serde = { workspace = true }
+serde_json = "1"
