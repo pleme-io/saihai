@@ -3,7 +3,7 @@ resolver = "2"
 members = ["hashigo", "saihai-spec", "saihai-forge", "bancadad"]
 
 [workspace.package]
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 license = "MIT"
 repository = "https://github.com/pleme-io/saihai"
@@ -13,7 +13,7 @@ rust-version = "1.89"
 tatara-lisp = "0.3"
 serde = { version = "1", features = ["derive"] }
 thiserror = "2"
-hashigo = { path = "hashigo", version = "0.1.0" }
+hashigo = { path = "hashigo", version = "0.1.1" }
 
 [profile.release]
 codegen-units = 1

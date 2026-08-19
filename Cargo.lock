@@ -60,7 +60,7 @@ checksum = "f2032f911046de80f0a198e0901378627c33f59ea0ac00e363d481118bd70a53"
 
 [[package]]
 name = "bancadad"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "chrono",
  "indexmap",
@@ -405,7 +405,7 @@ checksum = "ed5909b6e89a2db4456e54cd5f673791d7eca6732202bbf2a9cc504fe2f9b84a"
 
 [[package]]
 name = "hashigo"
-version = "0.1.0"
+version = "0.1.1"
 
 [[package]]
 name = "hex"
@@ -787,14 +787,14 @@ checksum = "9774ba4a74de5f7b1c1451ed6cd5285a32eddb5cccb8cc655a4e50009e06477f"
 
 [[package]]
 name = "saihai-forge"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "saihai-spec",
 ]
 
 [[package]]
 name = "saihai-spec"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "hashigo",
  "serde",
