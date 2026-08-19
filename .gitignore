@@ -4,3 +4,8 @@
 .direnv/
 .envrc.local
 Cargo.lock.bak
+
+# Local-only registry override used to compile-verify the `login` feature
+# before mukae publishes. Must never be committed — it resolves on one
+# machine and would silently mask a broken dependency for everyone else.
+.cargo/
